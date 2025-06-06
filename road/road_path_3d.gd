@@ -4,8 +4,6 @@ class_name RoadPath3D extends Path3D
 var road_len: float = 0.0
 
 const HORIZONTAL_ANGLE = 0.37 * PI
-const VERTICAL_ANGLE = 0.1 * PI
-const VERTICAL_LIMIT = 0.1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,9 +29,7 @@ func extend_road():
 	var dir = (-last_in).normalized()
 	
 	#var new_dir = (dir + Vector3(randf_range(-1, 1), randf_range(-0.2, 0.2), randf_range(-1, 1))).normalized()
-	var new_dir = dir.rotated(Vector3.UP.cross(dir).normalized(), randf_range(-VERTICAL_ANGLE, VERTICAL_ANGLE))
-	new_dir.y = clamp(new_dir.y, -VERTICAL_LIMIT, VERTICAL_LIMIT)
-	new_dir = new_dir.rotated(Vector3.UP, randf_range(-HORIZONTAL_ANGLE, HORIZONTAL_ANGLE))
+	var new_dir = dir.rotated(Vector3.UP, randf_range(-HORIZONTAL_ANGLE, HORIZONTAL_ANGLE))
 	var new_pos = last_pos + randf_range(50, 100) * new_dir
 	curve.add_point(
 		new_pos,
