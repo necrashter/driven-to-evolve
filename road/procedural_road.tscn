@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://dk06xcftuc7go"]
+
+[ext_resource type="Script" uid="uid://d2t751qmv78rk" path="res://road/procedural_road.gd" id="1_yt7gp"]
+[ext_resource type="Script" uid="uid://b33cvu61bwbt1" path="res://road/road_path_3d.gd" id="2_1qq4v"]
+[ext_resource type="Script" uid="uid://cri41gevumu88" path="res://road/road_lanes_mesh.gd" id="3_sq1jg"]
+[ext_resource type="Material" uid="uid://d33khyiglywww" path="res://road/neon.material" id="4_kc1tq"]
+
+[sub_resource type="Curve3D" id="Curve3D_c7wnc"]
+_data = {
+"points": PackedVector3Array(0, 0, -20, 0, 0, 20, 0, 0, 0, 0, 0, -20, 0, 0, 20, 0, 0, 40, -3.49951, 2, -18.8554, 3.49951, -2, 18.8554, 13.6401, -7.79546, 113.493, -6.87233, 2, -18.3679, 6.87233, -2, 18.3679, 35.7932, -14.2425, 172.703, 7.70796, -2, -18.125, -7.70796, 2, 18.125, 7.53413, -6.91005, 239.153, -7.90614, -2, -18.1532, 7.90614, 2, 18.1532, 37.7912, 0.744025, 308.626, -13.5429, 1.95472, -14.5866, 13.5429, -1.95472, 14.5866, 74.1537, -4.50438, 347.791),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
+up_vector_enabled = false
+
+[node name="ProceduralRoad" type="Node3D"]
+process_thread_group = 2
+process_thread_group_order = 1
+process_thread_messages = 0
+script = ExtResource("1_yt7gp")
+
+[node name="RoadPath3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_c7wnc")
+script = ExtResource("2_1qq4v")
+
+[node name="RoadLanesMesh" type="Node3D" parent="." node_paths=PackedStringArray("road")]
+script = ExtResource("3_sq1jg")
+road = NodePath("../RoadPath3D")
+material = ExtResource("4_kc1tq")
+
+[connection signal="body_entered" from="@Node3D@21834/Coin" to="@Node3D@21834/Coin" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21834/@Area3D@21831" to="@Node3D@21834/@Area3D@21831" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21834/@Area3D@21832" to="@Node3D@21834/@Area3D@21832" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21834/@Area3D@21833" to="@Node3D@21834/@Area3D@21833" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21846/Coin" to="@Node3D@21846/Coin" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21846/@Area3D@21839" to="@Node3D@21846/@Area3D@21839" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21846/@Area3D@21840" to="@Node3D@21846/@Area3D@21840" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21846/@Area3D@21841" to="@Node3D@21846/@Area3D@21841" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21846/@Area3D@21842" to="@Node3D@21846/@Area3D@21842" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21846/@Area3D@21843" to="@Node3D@21846/@Area3D@21843" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21846/@Area3D@21844" to="@Node3D@21846/@Area3D@21844" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21846/@Area3D@21845" to="@Node3D@21846/@Area3D@21845" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21860/Coin" to="@Node3D@21860/Coin" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21860/@Area3D@21851" to="@Node3D@21860/@Area3D@21851" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21860/@Area3D@21852" to="@Node3D@21860/@Area3D@21852" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21860/@Area3D@21853" to="@Node3D@21860/@Area3D@21853" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21860/@Area3D@21854" to="@Node3D@21860/@Area3D@21854" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21860/@Area3D@21855" to="@Node3D@21860/@Area3D@21855" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21860/@Area3D@21856" to="@Node3D@21860/@Area3D@21856" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21860/@Area3D@21857" to="@Node3D@21860/@Area3D@21857" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21860/@Area3D@21858" to="@Node3D@21860/@Area3D@21858" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21860/@Area3D@21859" to="@Node3D@21860/@Area3D@21859" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21869/Coin" to="@Node3D@21869/Coin" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21869/@Area3D@21865" to="@Node3D@21869/@Area3D@21865" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21869/@Area3D@21866" to="@Node3D@21869/@Area3D@21866" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21869/@Area3D@21867" to="@Node3D@21869/@Area3D@21867" method="_on_coin_body_enter"]
+[connection signal="body_entered" from="@Node3D@21869/@Area3D@21868" to="@Node3D@21869/@Area3D@21868" method="_on_coin_body_enter"]

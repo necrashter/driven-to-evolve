@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cy4r5vjrqppkq"]
+
+[node name="RoadMesh" type="Node3D"]

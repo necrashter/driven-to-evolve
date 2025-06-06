@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://baftw7g02objv"]
+
+[ext_resource type="Script" uid="uid://dgam2wxaxsgha" path="res://road/threaded_builder.gd" id="1_cgdnx"]
+
+[node name="ThreadedBuilder" type="Node"]
+script = ExtResource("1_cgdnx")

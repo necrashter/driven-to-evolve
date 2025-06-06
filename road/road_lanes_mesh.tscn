@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2km2ymeh8xqx"]
+
+[ext_resource type="Script" uid="uid://cri41gevumu88" path="res://road/road_lanes_mesh.gd" id="1_fped0"]
+
+[node name="RoadLanesMesh" type="Node3D"]
+script = ExtResource("1_fped0")

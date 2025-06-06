@@ -1,0 +1,114 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwj3kkit24or3"]
+
+[ext_resource type="Material" uid="uid://d33khyiglywww" path="res://road/neon.material" id="1_74tk3"]
+[ext_resource type="Script" uid="uid://or4vy01wqkaa" path="res://road/road.gd" id="1_l2blf"]
+[ext_resource type="Material" uid="uid://dtc0ujb2qmaf" path="res://road/road.material" id="2_6bp0q"]
+
+[sub_resource type="Curve3D" id="Curve3D_48fx6"]
+_data = {
+"points": PackedVector3Array(0.543398, -0.103395, 1.65241, 0, 0, -3, 0, 0, 0, 0, 0, 3, 2.98574, 3.12634, -11.0604, 0, 0, -40),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="Road" type="Node3D"]
+process_thread_group = 2
+process_thread_group_order = 1
+process_thread_messages = 1
+script = ExtResource("1_l2blf")
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_48fx6")
+
+[node name="Road" type="CSGPolygon3D" parent="."]
+use_collision = true
+polygon = PackedVector2Array(-10, -0.05, -10, 0, 10, 0, 10, -0.05)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 20.0
+path_joined = false
+material = ExtResource("2_6bp0q")
+
+[node name="LeftBar" type="CSGPolygon3D" parent="."]
+use_collision = true
+polygon = PackedVector2Array(-10, -0.05, -10, 1, -9, 0, -9, -0.05)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 20.0
+path_joined = false
+material = ExtResource("1_74tk3")
+
+[node name="RightBar" type="CSGPolygon3D" parent="."]
+use_collision = true
+polygon = PackedVector2Array(9, -0.05, 9, 0, 10, 1, 10, -0.05)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 20.0
+path_joined = false
+material = ExtResource("1_74tk3")
+
+[node name="Lane" type="CSGPolygon3D" parent="."]
+calculate_tangents = false
+polygon = PackedVector2Array(-0.25, 0, -0.25, 0.1, 0.25, 0.1, 0.25, 0)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 20.0
+path_joined = false
+smooth_faces = true
+material = ExtResource("1_74tk3")
+
+[node name="Lane2" type="CSGPolygon3D" parent="."]
+calculate_tangents = false
+polygon = PackedVector2Array(-5.25, 0, -5.25, 0.1, -4.75, 0.1, -4.75, 0)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 20.0
+path_joined = false
+smooth_faces = true
+material = ExtResource("1_74tk3")
+
+[node name="Lane3" type="CSGPolygon3D" parent="."]
+calculate_tangents = false
+polygon = PackedVector2Array(4.75, 0, 4.75, 0.1, 5.25, 0.1, 5.25, 0)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 20.0
+path_joined = false
+smooth_faces = true
+material = ExtResource("1_74tk3")
