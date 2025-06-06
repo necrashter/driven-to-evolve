@@ -28,12 +28,18 @@ func _physics_process(delta: float):
 
 	_steer_target = Input.get_axis(&"turn_right", &"turn_left")
 	_steer_target *= STEER_LIMIT
+	
+	engine_force = Input.get_axis(&"reverse", &"accelerate") * engine_force_value
+	# Increase engine force at low speeds to make the initial acceleration faster.
+	var speed := linear_velocity.length()
+	if speed < 5.0 and not is_zero_approx(speed) and not is_zero_approx(engine_force):
+		engine_force = sign(engine_force) * clampf(engine_force_value * 5.0 / speed, 0.0, 200.0)
 
 	# Engine sound simulation (not realistic, as this car script has no notion of gear or engine RPM).
 	desired_engine_pitch = 0.05 + linear_velocity.length() / (engine_force_value * 1.75)
 	# Change pitch smoothly to avoid abrupt change on collision.
 	$EngineSound.pitch_scale = lerpf($EngineSound.pitch_scale, desired_engine_pitch, 0.2)
-
+	
 	if abs(linear_velocity.length() - previous_speed) > 1.0:
 		# Sudden velocity change, likely due to a collision. Play an impact sound to give audible feedback,
 		# and vibrate for haptic feedback.
@@ -46,32 +52,6 @@ func _physics_process(delta: float):
 			emit_signal(&"combo_lost")
 		combo = 0
 		$HeadLightAnimPlayer.play(&"crash")
-
-	# Automatically accelerate when using touch controls (reversing overrides acceleration).
-	if DisplayServer.is_touchscreen_available() or Input.is_action_pressed(&"accelerate"):
-		# Increase engine force at low speeds to make the initial acceleration faster.
-		var speed := linear_velocity.length()
-		if speed < 5.0 and not is_zero_approx(speed):
-			engine_force = clampf(engine_force_value * 5.0 / speed, 0.0, 100.0)
-		else:
-			engine_force = engine_force_value
-
-		if not DisplayServer.is_touchscreen_available():
-			# Apply analog throttle factor for more subtle acceleration if not fully holding down the trigger.
-			engine_force *= Input.get_action_strength(&"accelerate")
-	else:
-		engine_force = 0.0
-
-	if Input.is_action_pressed(&"reverse"):
-		# Increase engine force at low speeds to make the initial reversing faster.
-		var speed := linear_velocity.length()
-		if speed < 5.0 and not is_zero_approx(speed):
-			engine_force = -clampf(engine_force_value * BRAKE_STRENGTH * 5.0 / speed, 0.0, 100.0)
-		else:
-			engine_force = -engine_force_value * BRAKE_STRENGTH
-
-		# Apply analog brake factor for more subtle braking if not fully holding down the trigger.
-		engine_force *= Input.get_action_strength(&"reverse")
 
 	steering = move_toward(steering, _steer_target, STEER_SPEED * delta)
 
