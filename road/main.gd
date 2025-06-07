@@ -100,5 +100,4 @@ func process_car(car):
 
 func reset_car(car):
 	car.transform = path3d.curve.sample_baked_with_rotation(10.0, true, true)
-	car.rotate(car.transform.basis.y, PI)
 	car.reset()

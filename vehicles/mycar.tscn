@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" uid="uid://di1so232phsx6" path="res://vehicles/vehicle.gd" id="1_t7at2"]
 [ext_resource type="AudioStream" uid="uid://sy2li7u35867" path="res://vehicles/impact_1.wav" id="6_toyut"]
+[ext_resource type="PackedScene" uid="uid://bd7qb4mhlkiqe" path="res://road/low-poly-car.blend" id="7_jskqw"]
 [ext_resource type="AudioStream" uid="uid://bf0h7s81yr8nj" path="res://vehicles/impact_2.wav" id="7_q0nip"]
 [ext_resource type="AudioStream" uid="uid://sun2n8a4xapl" path="res://vehicles/impact_3.wav" id="8_6yboy"]
 [ext_resource type="AudioStream" uid="uid://dpbayeeufya21" path="res://vehicles/impact_4.wav" id="9_uw4bx"]
-[ext_resource type="PackedScene" uid="uid://ducwbic7hnpd" path="res://road/low-poly-car.glb" id="10_su7ae"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l7i2k"]
 friction = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x74tc"]
-size = Vector3(2.2088, 1.18018, 4.26678)
+size = Vector3(2.22046, 1.44559, 4.3303)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bpr2q"]
 random_pitch = 1.05
@@ -29,7 +29,7 @@ center_of_mass_mode = 1
 script = ExtResource("1_t7at2")
 
 [node name="Wheel1" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.979581, 0.115169, 1.45087)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.990721, 0.27453, -1.36273)
 use_as_traction = true
 use_as_steering = true
 wheel_roll_influence = 0.4
@@ -40,7 +40,7 @@ suspension_stiffness = 40.0
 damping_compression = 0.88
 
 [node name="Wheel2" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98, 0.115, -1.189)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.990231, 0.274, 1.24813)
 use_as_traction = true
 wheel_roll_influence = 0.4
 wheel_radius = 0.25
@@ -50,7 +50,7 @@ suspension_stiffness = 40.0
 damping_compression = 0.88
 
 [node name="Wheel3" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.98, 0.115, 1.451)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.991, 0.274361, -1.36286)
 use_as_traction = true
 use_as_steering = true
 wheel_roll_influence = 0.4
@@ -61,7 +61,7 @@ suspension_stiffness = 40.0
 damping_compression = 0.88
 
 [node name="Wheel4" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.98, 0.115, -1.189)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.991, 0.274361, 1.24782)
 use_as_traction = true
 wheel_roll_influence = 0.4
 wheel_radius = 0.25
@@ -71,7 +71,7 @@ suspension_stiffness = 40.0
 damping_compression = 0.88
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0769319, 0.678357, -0.000985868)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000126548, 0.729399, -0.00919789)
 shape = SubResource("BoxShape3D_x74tc")
 
 [node name="ImpactSound" type="AudioStreamPlayer3D" parent="."]
@@ -80,35 +80,34 @@ volume_db = -12.048
 max_polyphony = 3
 attenuation_filter_cutoff_hz = 20500.0
 
-[node name="low-poly-car" parent="." instance=ExtResource("10_su7ae")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-
 [node name="RayCasts" type="Node3D" parent="."]
 
 [node name="1" type="RayCast3D" parent="RayCasts"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.5, 0)
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0.5, 0)
 target_position = Vector3(0, -10, 0)
 
 [node name="2" type="RayCast3D" parent="RayCasts"]
-transform = Transform3D(0.866025, 0.5, 2.18557e-08, 0, -4.37114e-08, 1, 0.5, -0.866025, -3.78552e-08, 0, 0.5, 0)
+transform = Transform3D(-0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, 0.866025, 3.78552e-08, 0, 0.5, 0)
 target_position = Vector3(0, -10, 0)
 
 [node name="3" type="RayCast3D" parent="RayCasts"]
-transform = Transform3D(0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, -0.866025, -3.78552e-08, 0, 0.5, 0)
+transform = Transform3D(-0.866025, 0.5, 2.18557e-08, 0, -4.37114e-08, 1, 0.5, 0.866025, 3.78552e-08, 0, 0.5, 0)
 target_position = Vector3(0, -10, 0)
 
 [node name="4" type="RayCast3D" parent="RayCasts"]
-transform = Transform3D(0.5, 0.866025, 3.78552e-08, 0, -4.37114e-08, 1, 0.866025, -0.5, -2.18557e-08, 0, 0.5, 0)
+transform = Transform3D(-0.5, -0.866025, -3.78552e-08, 0, -4.37114e-08, 1, -0.866025, 0.5, 2.18557e-08, 0, 0.5, 0)
 target_position = Vector3(0, -10, 0)
 
 [node name="5" type="RayCast3D" parent="RayCasts"]
-transform = Transform3D(0.5, -0.866025, -3.78552e-08, 0, -4.37114e-08, 1, -0.866025, -0.5, -2.18557e-08, 0, 0.5, 0)
+transform = Transform3D(-0.5, 0.866025, 3.78552e-08, 0, -4.37114e-08, 1, 0.866025, 0.5, 2.18557e-08, 0, 0.5, 0)
 target_position = Vector3(0, -10, 0)
 
 [node name="6" type="RayCast3D" parent="RayCasts"]
-transform = Transform3D(8.9407e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, -8.9407e-08, -5.32907e-15, 0, 0.5, 0)
+transform = Transform3D(-1.7683e-07, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 1.7683e-07, 9.15044e-15, 0, 0.5, 0)
 target_position = Vector3(0, -10, 0)
 
 [node name="7" type="RayCast3D" parent="RayCasts"]
-transform = Transform3D(-1.7683e-07, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 1.7683e-07, 9.15044e-15, 0, 0.5, 0)
+transform = Transform3D(2.64253e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, -2.64253e-07, -1.29718e-14, 0, 0.5, 0)
 target_position = Vector3(0, -10, 0)
+
+[node name="low-poly-car" parent="." instance=ExtResource("7_jskqw")]
