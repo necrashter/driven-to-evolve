@@ -47,11 +47,10 @@ func _physics_process(delta: float) -> void:
 	for car in cars:
 		process_car(car)
 	
-	var avg_offset = 0.0
+	var cam_offset = -INF
 	for car in cars:
-		avg_offset += path3d.curve.get_closest_offset(car.position)
-	avg_offset /= len(cars)
-	$CameraBase.transform = path3d.curve.sample_baked_with_rotation(avg_offset, true, true)
+		cam_offset = max(cam_offset, path3d.curve.get_closest_offset(car.position))
+	$CameraBase.transform = path3d.curve.sample_baked_with_rotation(cam_offset, true, true)
 
 func reset():
 	if road:
