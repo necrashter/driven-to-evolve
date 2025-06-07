@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://dm740w1ieanmw"]
 
 [ext_resource type="Script" uid="uid://di1so232phsx6" path="res://vehicles/vehicle.gd" id="1_t7at2"]
+[ext_resource type="PackedScene" uid="uid://bd7qb4mhlkiqe" path="res://models/low-poly-car.blend" id="6_5l8ug"]
 [ext_resource type="AudioStream" uid="uid://sy2li7u35867" path="res://vehicles/impact_1.wav" id="6_toyut"]
-[ext_resource type="PackedScene" uid="uid://bd7qb4mhlkiqe" path="res://road/low-poly-car.blend" id="7_jskqw"]
 [ext_resource type="AudioStream" uid="uid://bf0h7s81yr8nj" path="res://vehicles/impact_2.wav" id="7_q0nip"]
 [ext_resource type="AudioStream" uid="uid://sun2n8a4xapl" path="res://vehicles/impact_3.wav" id="8_6yboy"]
 [ext_resource type="AudioStream" uid="uid://dpbayeeufya21" path="res://vehicles/impact_4.wav" id="9_uw4bx"]
@@ -110,4 +110,4 @@ target_position = Vector3(0, -10, 0)
 transform = Transform3D(2.64253e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, -2.64253e-07, -1.29718e-14, 0, 0.5, 0)
 target_position = Vector3(0, -10, 0)
 
-[node name="low-poly-car" parent="." instance=ExtResource("7_jskqw")]
+[node name="low-poly-car" parent="." instance=ExtResource("6_5l8ug")]

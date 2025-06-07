@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bd7qb4mhlkiqe"
-path="res://.godot/imported/low-poly-car.blend-4876e360a34295c571d615a792ecd19f.scn"
+path="res://.godot/imported/low-poly-car.blend-f7bd78ad24edd3704b8a944867f7eb4c.scn"
 
 [deps]
 
-source_file="res://road/low-poly-car.blend"
-dest_files=["res://.godot/imported/low-poly-car.blend-4876e360a34295c571d615a792ecd19f.scn"]
+source_file="res://models/low-poly-car.blend"
+dest_files=["res://.godot/imported/low-poly-car.blend-f7bd78ad24edd3704b8a944867f7eb4c.scn"]
 
 [params]
 

@@ -1,6 +1,6 @@
 extends Node3D
 
-const CAR: PackedScene = preload("res://vehicles/mycar.tscn")
+const CAR: PackedScene = preload("res://vehicles/car.tscn")
 
 var init_std: float = 0.1
 var mutation_std: float = 0.02
