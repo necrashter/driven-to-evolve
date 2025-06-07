@@ -10,7 +10,7 @@ const BRAKE_STRENGTH = 2.0
 var steer_input: float = 0.0
 var acc_input: float = 0.0
 
-var previous_speed := linear_velocity.length()
+var previous_velocity := linear_velocity
 var _steer_target := 0.0
 
 signal combo_lost
@@ -32,13 +32,11 @@ func _physics_process(delta: float):
 	if speed < 5.0 and not is_zero_approx(speed) and not is_zero_approx(engine_force):
 		engine_force = sign(engine_force) * clampf(engine_force_value * 5.0 / speed, 0.0, 200.0)
 	
-	if abs(linear_velocity.length() - previous_speed) > 1.0:
-		# Sudden velocity change, likely due to a collision. Play an impact sound to give audible feedback,
-		# and vibrate for haptic feedback.
+	if (linear_velocity - previous_velocity).length() > 1.0:
+		# Sudden velocity change, likely due to a collision.
+		# Play an impact sound to give audible feedback.
 		$ImpactSound.play()
-		Input.vibrate_handheld(100)
-		for joypad in Input.get_connected_joypads():
-			Input.start_joy_vibration(joypad, 0.0, 0.5, 0.1)
+		process_mode = Node.PROCESS_MODE_DISABLED
 		# Break combo
 		if combo > 0:
 			emit_signal(&"combo_lost")
@@ -46,7 +44,17 @@ func _physics_process(delta: float):
 
 	steering = move_toward(steering, _steer_target, STEER_SPEED * delta)
 
-	previous_speed = linear_velocity.length()
+	previous_velocity = linear_velocity
+
+func reset():
+	process_mode = Node.PROCESS_MODE_INHERIT
+	linear_velocity = Vector3.ZERO
+	angular_velocity = Vector3.ZERO
+	previous_velocity = Vector3.ZERO
+	engine_force = 0.0
+	steering = 0.0
+	steer_input = 0.0
+	acc_input = 0.0
 
 func get_ray_inputs():
 	var output = []
