@@ -31,9 +31,10 @@ func _physics_process(delta: float) -> void:
 		selection()
 		reset()
 		return
+	
 	var inputs = []
 	for car in cars:
-		inputs.append(cars[0].get_ray_inputs())
+		inputs.append(car.get_ray_inputs())
 	var input_matrix = nd.reshape(nd.array(inputs), [len(cars), 1, input_length])
 	
 	var output = nd.add(nd.matmul(input_matrix, matrix), bias)
