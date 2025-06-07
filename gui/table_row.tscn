@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5c5haj2t2cck"]
+
+[ext_resource type="Script" uid="uid://dvf044x44sykt" path="res://gui/table_row.gd" id="1_lof3s"]
+
+[node name="TableRow" type="HBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+size_flags_horizontal = 3
+script = ExtResource("1_lof3s")
+
+[node name="Label1" type="Label" parent="."]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+text = "1."
+horizontal_alignment = 3
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "20"
+horizontal_alignment = 2
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "16"
+horizontal_alignment = 2

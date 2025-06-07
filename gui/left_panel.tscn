@@ -41,3 +41,44 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 text = "Time:"
+
+[node name="SpeedLabel" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+text = "Speed:"
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpeedLabel2" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+text = "Previous Runs"
+horizontal_alignment = 1
+
+[node name="TableHeader" type="HBoxContainer" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Table Header"
+
+[node name="Label" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer/TableHeader"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+text = "#"
+horizontal_alignment = 3
+
+[node name="Label4" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer/TableHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Distance"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer/TableHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Speed"
+horizontal_alignment = 2

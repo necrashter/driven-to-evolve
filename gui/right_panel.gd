@@ -2,7 +2,6 @@ extends Control
 
 signal change_mutation(mutation: float)
 
-var generation: int = 1
 var money: int = 30
 var next_gen_requested: bool = false
 
@@ -13,7 +12,7 @@ var mutation_options = [
 ]
 
 func _ready() -> void:
-	%GenerationLabel.text = "Generation: "+str(generation)
+	%GenerationLabel.text = "Generation: 0"
 	%MoneyLabel.text = "Money: "+str(money)
 	for i in range(len(mutation_options)):
 		var meta = mutation_options[i]
@@ -23,11 +22,10 @@ func _ready() -> void:
 func get_mutation():
 	return mutation_options[%MutationButton.selected]['mutation']
 
-func on_new_generation():
-	generation += 1
+func on_new_generation(generation):
 	money += 1
-	%GenerationLabel.text = "Generation: "+str(generation)
-	%MoneyLabel.text = "Money: "+str(money)
+	%GenerationLabel.text = "Generation: " + str(generation)
+	%MoneyLabel.text = "Money: " + str(money)
 	
 func on_population_update(population:int, target: int):
 	%PopLabel.text = "Population: "+str(population)
