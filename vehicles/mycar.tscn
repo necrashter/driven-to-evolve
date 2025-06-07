@@ -1,14 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://dm740w1ieanmw"]
+[gd_scene load_steps=10 format=3 uid="uid://dm740w1ieanmw"]
 
 [ext_resource type="Script" uid="uid://di1so232phsx6" path="res://vehicles/vehicle.gd" id="1_t7at2"]
-[ext_resource type="Script" uid="uid://d3wosol3q70sr" path="res://vehicles/follow_camera.gd" id="4_wbaf7"]
-[ext_resource type="AudioStream" uid="uid://cb7wvsd6vygd3" path="res://vehicles/engine.wav" id="5_bmhg3"]
 [ext_resource type="AudioStream" uid="uid://sy2li7u35867" path="res://vehicles/impact_1.wav" id="6_toyut"]
 [ext_resource type="AudioStream" uid="uid://bf0h7s81yr8nj" path="res://vehicles/impact_2.wav" id="7_q0nip"]
 [ext_resource type="AudioStream" uid="uid://sun2n8a4xapl" path="res://vehicles/impact_3.wav" id="8_6yboy"]
 [ext_resource type="AudioStream" uid="uid://dpbayeeufya21" path="res://vehicles/impact_4.wav" id="9_uw4bx"]
 [ext_resource type="PackedScene" uid="uid://ducwbic7hnpd" path="res://road/low-poly-car.glb" id="10_su7ae"]
-[ext_resource type="Texture2D" uid="uid://bju75l2w3r7vq" path="res://vehicles/blob_shadow.png" id="11_sokok"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l7i2k"]
 friction = 0.5
@@ -25,68 +22,8 @@ stream_1/stream = ExtResource("7_q0nip")
 stream_2/stream = ExtResource("8_6yboy")
 stream_3/stream = ExtResource("9_uw4bx")
 
-[sub_resource type="Animation" id="Animation_f5or7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpotLight3D:light_energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [20.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SpotLight3D2:light_energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [20.0]
-}
-
-[sub_resource type="Animation" id="Animation_nqljh"]
-resource_name = "crash"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpotLight3D:light_energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.466667, 0.533333, 0.666667, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 20.0, 0.0, 20.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SpotLight3D2:light_energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.466667, 0.533333, 0.666667, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 20.0, 0.0, 20.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ik2g"]
-_data = {
-&"RESET": SubResource("Animation_f5or7"),
-&"crash": SubResource("Animation_nqljh")
-}
-
 [node name="Car" type="VehicleBody3D"]
-collision_layer = 3
+collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_l7i2k")
 center_of_mass_mode = 1
 script = ExtResource("1_t7at2")
@@ -137,67 +74,41 @@ damping_compression = 0.88
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0769319, 0.678357, -0.000985868)
 shape = SubResource("BoxShape3D_x74tc")
 
-[node name="CameraBase" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.86265e-07)
-
-[node name="Target" type="Node3D" parent="CameraBase"]
-transform = Transform3D(-1, 2.11495e-08, -8.4826e-08, 0, 0.970296, 0.241922, 8.74228e-08, 0.241922, -0.970296, 1.16415e-10, 0, 10)
-
-[node name="Camera3D" type="Camera3D" parent="CameraBase"]
-transform = Transform3D(-1, 2.11495e-08, -8.4826e-08, 0, 0.970296, 0.241922, 8.74228e-08, 0.241922, -0.970296, 0, 9, -13)
-fov = 74.0
-near = 0.1
-script = ExtResource("4_wbaf7")
-min_distance = 4.0
-max_distance = 29.0
-height = 27.0
-
-[node name="EngineSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("5_bmhg3")
-volume_db = -18.286
-pitch_scale = 0.05
-autoplay = true
-attenuation_filter_cutoff_hz = 20500.0
-
 [node name="ImpactSound" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_bpr2q")
 volume_db = -12.048
 max_polyphony = 3
 attenuation_filter_cutoff_hz = 20500.0
 
-[node name="BlobShadow" type="Decal" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
-size = Vector3(3, 5, 5)
-texture_albedo = ExtResource("11_sokok")
-upper_fade = 2.0
-lower_fade = 1.0
-cull_mask = 1048573
-
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
-current = true
-
-[node name="InteriorCameraPosition" type="Marker3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.9, 0.3)
-
-[node name="TopDownCameraPosition" type="Marker3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, 0, 3.82137e-15, 4.37114e-08, 1, 8.74228e-08, 1, -4.37114e-08, 0.00169557, 15.7771, 0.0955178)
-
 [node name="low-poly-car" parent="." instance=ExtResource("10_su7ae")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 2.26267e-08, 0.965926, 0.258819, -8.44439e-08, 0.258819, -0.965926, -0.83243, 0.735096, 2.05002)
-light_energy = 20.0
-spot_range = 6.94941
-spot_angle = 26.0113
+[node name="RayCasts" type="Node3D" parent="."]
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 2.26267e-08, 0.965926, 0.258819, -8.44439e-08, 0.258819, -0.965926, 0.832, 0.735003, 2.04999)
-light_energy = 20.0
-spot_range = 6.94941
-spot_angle = 26.0113
+[node name="1" type="RayCast3D" parent="RayCasts"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.5, 0)
+target_position = Vector3(0, -10, 0)
 
-[node name="HeadLightAnimPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_4ik2g")
-}
+[node name="2" type="RayCast3D" parent="RayCasts"]
+transform = Transform3D(0.866025, 0.5, 2.18557e-08, 0, -4.37114e-08, 1, 0.5, -0.866025, -3.78552e-08, 0, 0.5, 0)
+target_position = Vector3(0, -10, 0)
+
+[node name="3" type="RayCast3D" parent="RayCasts"]
+transform = Transform3D(0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, -0.866025, -3.78552e-08, 0, 0.5, 0)
+target_position = Vector3(0, -10, 0)
+
+[node name="4" type="RayCast3D" parent="RayCasts"]
+transform = Transform3D(0.5, 0.866025, 3.78552e-08, 0, -4.37114e-08, 1, 0.866025, -0.5, -2.18557e-08, 0, 0.5, 0)
+target_position = Vector3(0, -10, 0)
+
+[node name="5" type="RayCast3D" parent="RayCasts"]
+transform = Transform3D(0.5, -0.866025, -3.78552e-08, 0, -4.37114e-08, 1, -0.866025, -0.5, -2.18557e-08, 0, 0.5, 0)
+target_position = Vector3(0, -10, 0)
+
+[node name="6" type="RayCast3D" parent="RayCasts"]
+transform = Transform3D(8.9407e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, -8.9407e-08, -5.32907e-15, 0, 0.5, 0)
+target_position = Vector3(0, -10, 0)
+
+[node name="7" type="RayCast3D" parent="RayCasts"]
+transform = Transform3D(-1.7683e-07, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 1.7683e-07, 9.15044e-15, 0, 0.5, 0)
+target_position = Vector3(0, -10, 0)

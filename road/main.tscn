@@ -1,11 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6mppdtwfmrgd"]
+[gd_scene load_steps=6 format=3 uid="uid://b6mppdtwfmrgd"]
 
 [ext_resource type="Script" uid="uid://d03dwp54e4gy0" path="res://road/main.gd" id="1_l3rg6"]
-[ext_resource type="PackedScene" uid="uid://dm740w1ieanmw" path="res://vehicles/mycar.tscn" id="5_201fh"]
-[ext_resource type="PackedScene" uid="uid://bkhgqp3u4mln7" path="res://road/hud.tscn" id="6_n4vku"]
-[ext_resource type="PackedScene" uid="uid://dk06xcftuc7go" path="res://road/procedural_road.tscn" id="7_8i1xc"]
-[ext_resource type="Theme" uid="uid://clkqhgl0uj24l" path="res://road/theme.tres" id="7_auo4a"]
-[ext_resource type="Script" uid="uid://20mhi1d38dwa" path="res://spedometer.gd" id="8_7gotg"]
+[ext_resource type="Script" uid="uid://d3wosol3q70sr" path="res://vehicles/follow_camera.gd" id="4_ft6sg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_43o5t"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -28,20 +24,11 @@ fog_light_color = Color(0.62, 0.6014, 0.6014, 1)
 fog_density = 0.0015
 fog_sky_affect = 0.0
 
-[sub_resource type="InputEventAction" id="InputEventAction_a4722"]
-action = &"cycle_speedometer_unit"
-
-[sub_resource type="Shortcut" id="Shortcut_gwquv"]
-events = [SubResource("InputEventAction_a4722")]
-
 [node name="MainGame" type="Node3D"]
 script = ExtResource("1_l3rg6")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ls5lo")
-
-[node name="Car" parent="." instance=ExtResource("5_201fh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00169557, 0.6476, 4.90448)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.506501, -0.706305, -0.494561, -4.63342e-08, -0.573577, 0.819152, -0.862239, -0.414901, -0.290517, 11.0084, 12.3453, -31.3148)
@@ -53,48 +40,19 @@ shadow_blur = 1.5
 directional_shadow_mode = 0
 directional_shadow_max_distance = 80.0
 
-[node name="Control" parent="." instance=ExtResource("6_n4vku")]
+[node name="Cars" type="Node" parent="."]
 
-[node name="Spedometer" type="Button" parent="."]
-custom_minimum_size = Vector2(140, 40)
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -164.0
-offset_top = -64.0
-offset_right = -24.0
-offset_bottom = -24.0
-grow_horizontal = 0
-grow_vertical = 0
-focus_mode = 0
-theme = ExtResource("7_auo4a")
-action_mode = 0
-shortcut = SubResource("Shortcut_gwquv")
-shortcut_feedback = false
-shortcut_in_tooltip = false
-text = "Speed: ???"
-script = ExtResource("8_7gotg")
+[node name="CameraBase" type="Node3D" parent="."]
 
-[node name="Road" parent="." instance=ExtResource("7_8i1xc")]
+[node name="Camera3D" type="Camera3D" parent="CameraBase"]
+transform = Transform3D(1, 0, 0, 0, 0.516533, 0.856267, 0, -0.856267, 0.516533, 0, 26.4679, 8.50163)
+fov = 74.0
+near = 0.1
+script = ExtResource("4_ft6sg")
+min_distance = 4.0
+max_distance = 29.0
+height = 27.0
 
-[connection signal="combo_lost" from="Car" to="Control" method="combo_lost"]
-[connection signal="pressed" from="Spedometer" to="Spedometer" method="_on_spedometer_pressed"]
-[connection signal="body_entered" from="Road/@Node3D@22102/Coin" to="Road/@Node3D@22102/Coin" method="_on_coin_body_enter"]
-[connection signal="body_entered" from="Road/@Node3D@22102/@Area3D@22094" to="Road/@Node3D@22102/@Area3D@22094" method="_on_coin_body_enter"]
-[connection signal="body_entered" from="Road/@Node3D@22102/@Area3D@22095" to="Road/@Node3D@22102/@Area3D@22095" method="_on_coin_body_enter"]
-[connection signal="body_entered" from="Road/@Node3D@22102/@Area3D@22096" to="Road/@Node3D@22102/@Area3D@22096" method="_on_coin_body_enter"]
-[connection signal="body_entered" from="Road/@Node3D@22102/@Area3D@22097" to="Road/@Node3D@22102/@Area3D@22097" method="_on_coin_body_enter"]
-[connection signal="body_entered" from="Road/@Node3D@22102/@Area3D@22098" to="Road/@Node3D@22102/@Area3D@22098" method="_on_coin_body_enter"]
-[connection signal="body_entered" from="Road/@Node3D@22102/@Area3D@22099" to="Road/@Node3D@22102/@Area3D@22099" method="_on_coin_body_enter"]
-[connection signal="body_entered" from="Road/@Node3D@22102/@Area3D@22100" to="Road/@Node3D@22102/@Area3D@22100" method="_on_coin_body_enter"]
-[connection signal="body_entered" from="Road/@Node3D@22102/@Area3D@22101" to="Road/@Node3D@22102/@Area3D@22101" method="_on_coin_body_enter"]
-[connection signal="body_entered" from="Road/@Node3D@22108/Coin" to="Road/@Node3D@22108/Coin" method="_on_coin_body_enter"]
-[connection signal="body_entered" from="Road/@Node3D@22108/@Area3D@22107" to="Road/@Node3D@22108/@Area3D@22107" method="_on_coin_body_enter"]
-[connection signal="body_entered" from="Road/@Node3D@22118/Coin" to="Road/@Node3D@22118/Coin" method="_on_coin_body_enter"]
-[connection signal="body_entered" from="Road/@Node3D@22118/@Area3D@22113" to="Road/@Node3D@22118/@Area3D@22113" method="_on_coin_body_enter"]
-[connection signal="body_entered" from="Road/@Node3D@22118/@Area3D@22114" to="Road/@Node3D@22118/@Area3D@22114" method="_on_coin_body_enter"]
-[connection signal="body_entered" from="Road/@Node3D@22118/@Area3D@22115" to="Road/@Node3D@22118/@Area3D@22115" method="_on_coin_body_enter"]
-[connection signal="body_entered" from="Road/@Node3D@22118/@Area3D@22116" to="Road/@Node3D@22118/@Area3D@22116" method="_on_coin_body_enter"]
-[connection signal="body_entered" from="Road/@Node3D@22118/@Area3D@22117" to="Road/@Node3D@22118/@Area3D@22117" method="_on_coin_body_enter"]
+[node name="AudioListener3D" type="AudioListener3D" parent="CameraBase/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.516533, -0.856267, 0, 0.856267, 0.516533, 0, 0, 0)
+current = true
