@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://bbx250rgy6lfy"]
+[gd_scene load_steps=15 format=3 uid="uid://bbx250rgy6lfy"]
 
 [ext_resource type="Script" uid="uid://or4vy01wqkaa" path="res://road/road.gd" id="1_tt3rn"]
 [ext_resource type="Texture2D" uid="uid://1woqnveilmos" path="res://road/roadtex.png" id="2_15g0h"]
 [ext_resource type="Material" uid="uid://d33khyiglywww" path="res://road/neon.material" id="3_qfv12"]
 [ext_resource type="PackedScene" uid="uid://dm740w1ieanmw" path="res://vehicles/car.tscn" id="5_o24di"]
-[ext_resource type="PackedScene" uid="uid://bkhgqp3u4mln7" path="res://road/hud.tscn" id="6_5f01f"]
 [ext_resource type="Theme" uid="uid://clkqhgl0uj24l" path="res://road/theme.tres" id="7_axxc1"]
 [ext_resource type="Script" uid="uid://20mhi1d38dwa" path="res://spedometer.gd" id="8_41jr1"]
 
@@ -70,8 +69,6 @@ shadow_bias = 0.015
 shadow_blur = 1.5
 directional_shadow_mode = 0
 directional_shadow_max_distance = 80.0
-
-[node name="Control" parent="." instance=ExtResource("6_5f01f")]
 
 [node name="Spedometer" type="Button" parent="."]
 custom_minimum_size = Vector2(140, 40)

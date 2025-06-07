@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://2pf2a0s6rm3r"]
+
+[ext_resource type="Script" uid="uid://duit1iwitndwt" path="res://gui/left_panel.gd" id="1_4jjva"]
+
+[node name="LeftPanel" type="Panel"]
+custom_minimum_size = Vector2(272, 0)
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+script = ExtResource("1_4jjva")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="HFlowContainer" parent="ScrollContainer/CenterContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Padding" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+
+[node name="DistanceLabel" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+text = "Distance:"
+
+[node name="TimeLabel" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+text = "Time:"

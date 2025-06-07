@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdr748hqkaljw"]
+
+[ext_resource type="Script" uid="uid://bc86npy5y3cdl" path="res://gui/right_panel.gd" id="1_350da"]
+
+[node name="RightPanel" type="Panel"]
+custom_minimum_size = Vector2(272, 0)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_350da")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="HFlowContainer" parent="ScrollContainer/CenterContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Padding" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+
+[node name="GenerationLabel" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+text = "Generation: 1"
+
+[node name="MoneyLabel" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+text = "Money: $0"
+
+[node name="PopLabel" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Population: 1"
+
+[node name="AddPopButton" type="Button" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add ($1)"
+
+[node name="MutationButton" type="OptionButton" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+
+[node name="NextButton" type="Button" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Next Generation (R)"
+
+[connection signal="pressed" from="ScrollContainer/CenterContainer/VBoxContainer/AddPopButton" to="." method="_on_add_pop_button_pressed"]
+[connection signal="item_selected" from="ScrollContainer/CenterContainer/VBoxContainer/MutationButton" to="." method="_on_mutation_button_item_selected"]
+[connection signal="pressed" from="ScrollContainer/CenterContainer/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
