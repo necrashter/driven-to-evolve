@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://8hp4ivij7r3q"]
+
+[ext_resource type="PackedScene" uid="uid://b6mppdtwfmrgd" path="res://road/main.tscn" id="1_khcq3"]
+[ext_resource type="PackedScene" uid="uid://dk06xcftuc7go" path="res://road/procedural_road.tscn" id="2_jehdt"]
+[ext_resource type="Script" uid="uid://0i2khgo2q4o7" path="res://levels/tutorial.gd" id="2_ok11k"]
+
+[sub_resource type="Curve3D" id="Curve3D_jehdt"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -10, 0, 0, 10, 0, 0, 30, 10, 0, 0, -10, 0, 0, -15, 0, 45, 10, 0, 0, -10, 0, 0, -75, 0, 45, 0, 0, 10, 0, 0, -10, -90, 0, 30, 0, 0, 10, 0, 0, -10, -90, 0, 0, -10, 0, 0, 0, 0, 0, -75, 0, -15, 0, 0, 0, 10, 0, 0, -45, 0, -15, 0, 0, -10, 0, 0, 0, -30, 0, 0, 0, 0, 0, 0, 0, 0, -30, 0, 10),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 10
+
+[node name="Tutorial" instance=ExtResource("1_khcq3")]
+script = ExtResource("2_ok11k")
+
+[node name="ProceduralRoad" parent="." index="6" instance=ExtResource("2_jehdt")]
+segment_count = 1
+random_items = false
+
+[node name="RoadPath3D" parent="ProceduralRoad" index="0"]
+curve = SubResource("Curve3D_jehdt")
+randomly_generated = false
+
+[editable path="ProceduralRoad"]

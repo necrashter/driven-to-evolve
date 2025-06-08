@@ -11,6 +11,7 @@ const ROAD_MAT := preload("res://road/road.material")
 @export var barrier_height: float = 1.5
 @export var segment_count: int = 6
 @export var lane_count: int = 4
+@export var random_items: bool = true
 static var z_step: float = 1.0
 
 @onready var path3d = $RoadPath3D
@@ -89,7 +90,8 @@ func add_segment(old_len, new_len):
 	segment.length = new_len - old_len
 	for builder in builders:
 		segment.add_child(builder.build())
-	segment.random_item(path3d.curve, road_width, old_len, new_len)
+	if random_items:
+		segment.random_item(path3d.curve, road_width, old_len, new_len)
 	segments.append(segment)
 	add_child(segment)
 

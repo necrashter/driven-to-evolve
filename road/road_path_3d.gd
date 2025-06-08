@@ -1,23 +1,25 @@
 @tool
 class_name RoadPath3D extends Path3D
 
+@export var randomly_generated: bool = true
 var road_len: float = 0.0
 
 const HORIZONTAL_ANGLE = 0.37 * PI
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	curve.clear_points()
-	curve.add_point(
-		Vector3(0.0, 0.0, 0.0),
-		Vector3(0.0, 0.0, -20.0),
-		Vector3(0.0, 0.0, 20.0),
-	)
-	curve.add_point(
-		Vector3(0.0, 0.0, 40.0),
-		Vector3(0.0, 0.0, -20.0),
-		Vector3(0.0, 0.0, 20.0),
-	)
+	if randomly_generated:
+		curve.clear_points()
+		curve.add_point(
+			Vector3(0.0, 0.0, 0.0),
+			Vector3(0.0, 0.0, -20.0),
+			Vector3(0.0, 0.0, 20.0),
+		)
+		curve.add_point(
+			Vector3(0.0, 0.0, 40.0),
+			Vector3(0.0, 0.0, -20.0),
+			Vector3(0.0, 0.0, 20.0),
+		)
 	road_len = curve.get_baked_length()
 
 # Extend path and return the length before extension

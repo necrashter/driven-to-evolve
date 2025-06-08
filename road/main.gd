@@ -16,8 +16,8 @@ var distance_offset: float = -10.0
 @onready var cars_node = $Cars
 @onready var right_panel = get_node_or_null("RightPanel")
 @onready var left_panel = get_node_or_null("LeftPanel")
-var path3d = null
-var road = null
+@onready var road = get_node_or_null("ProceduralRoad")
+@onready var path3d = get_node_or_null("ProceduralRoad/RoadPath3D")
 
 var cars: Array = []
 var pop_target: int = 1
@@ -98,16 +98,19 @@ func _physics_process(delta: float) -> void:
 	duration += delta
 
 func reset():
+	reset_road()
+	for car in cars:
+		reset_car(car)
+	duration = 0.0
+	distance_offset = -10.0
+
+func reset_road() -> void:
 	if road:
 		remove_child(road)
 		road.queue_free()
 	road = preload("res://road/procedural_road.tscn").instantiate()
 	path3d = road.get_node("RoadPath3D")
 	add_child(road)
-	for car in cars:
-		reset_car(car)
-	duration = 0.0
-	distance_offset = -10.0
 
 func selection():
 	# 1. Sort cars by offset (descending)
