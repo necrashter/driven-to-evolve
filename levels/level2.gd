@@ -8,9 +8,9 @@ func _ready() -> void:
 			"This time, the network will control the acceleration in addition to the steering. Moreover, the road will be randomized each time you restart.   " +
 			"For quickstart, the initial population and money values are higher. Press SPACE to start.",
 		},
-		#{
-			#"objective": objectives.get_child(1),
-		#},
+		{
+			"objective": objectives.get_child(1),
+		},
 		{
 			"text": "[center][b]Well Done![/b][/center]\n" +
 			"Press OK to continue to the next level.",

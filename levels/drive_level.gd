@@ -62,6 +62,9 @@ func _ready():
 			"text": "[center][b]Your AI joins![/b][/center]\n" +
 			"Have fun driving!",
 		},
+		{
+			"callback": game_end,
+		}
 	])
 	get_tree().paused = false
 
@@ -189,4 +192,9 @@ func on_objective_complete(objective: ObjectiveLabel) -> void:
 	var anim = preload("res://gui/text_anim.tscn").instantiate()
 	anim.get_node("Sublabel").text = objective.text
 	add_child(anim)
-			
+
+func game_end():
+	var anim = preload("res://gui/text_anim.tscn").instantiate()
+	anim.get_node("Label").text = "Victory!"
+	anim.get_node("Sublabel").text = "Game finished!"
+	add_child(anim)

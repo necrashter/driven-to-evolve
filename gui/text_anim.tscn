@@ -141,6 +141,7 @@ grow_vertical = 2
 pivot_offset = Vector2(428.5, 55)
 theme_override_font_sizes/font_size = 80
 text = "OBJECTIVE COMPLETE!"
+horizontal_alignment = 1
 
 [node name="Sublabel" type="Label" parent="."]
 layout_mode = 1
