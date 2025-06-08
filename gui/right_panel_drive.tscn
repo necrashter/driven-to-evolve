@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=3 uid="uid://bamu3gqsjmyv"]
+
+[ext_resource type="Theme" uid="uid://durh0keniwv21" path="res://gui/theme.tres" id="1_davnj"]
+[ext_resource type="Script" uid="uid://b6efw3eyq0gns" path="res://gui/right_panel_drive.gd" id="2_hwlry"]
+[ext_resource type="Script" uid="uid://ckn2b62iyl3bc" path="res://gui/pause_check_box.gd" id="4_wol7j"]
+[ext_resource type="Script" uid="uid://413kpcodqn2x" path="res://gui/speed_button.gd" id="5_ref6m"]
+[ext_resource type="Script" uid="uid://dyelu4vosirq5" path="res://gui/debug_check_box.gd" id="6_xbtma"]
+[ext_resource type="Script" uid="uid://coltck8jfg5yi" path="res://gui/reverse_debug_check_box.gd" id="7_davnj"]
+[ext_resource type="Script" uid="uid://dlkpnmu3navoc" path="res://gui/network_check_box.gd" id="7_xmr8v"]
+
+[node name="RightPanel" type="Panel"]
+process_mode = 3
+custom_minimum_size = Vector2(272, 0)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("1_davnj")
+script = ExtResource("2_hwlry")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="HFlowContainer" parent="ScrollContainer/CenterContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Padding" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+
+[node name="PopLabel" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Number of cars concurrently running in the simulation."
+mouse_filter = 1
+text = "Population: 1"
+
+[node name="NextButton" type="Button" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Create the next generation and restart the simulation."
+text = "Reset (R)"
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+
+[node name="PauseCheckBox" type="CheckBox" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Pause (Space)"
+script = ExtResource("4_wol7j")
+
+[node name="SpeedButton" type="OptionButton" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Modifies the simulation speed."
+selected = 0
+item_count = 3
+popup/item_0/text = "1x Speed"
+popup/item_0/id = 0
+popup/item_1/text = "2x Speed"
+popup/item_1/id = 1
+popup/item_2/text = "4x Speed"
+popup/item_2/id = 2
+script = ExtResource("5_ref6m")
+
+[node name="DebugCheckBox" type="CheckBox" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Show raycasts: red when colliding, green otherwise."
+text = "Show Raycasts (T)"
+script = ExtResource("6_xbtma")
+
+[node name="NetworkCheckBox" type="CheckBox" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Visualize the neural network.
+
+Thickness determines the weight of connections. Red is negative, green positive."
+text = "Visualize Network"
+script = ExtResource("7_xmr8v")
+
+[node name="ReverseDebugCheckBox" type="CheckBox" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Show sensor inputs that are calculated from the car inputs you provide as rays. Red denotes obstacle."
+button_pressed = true
+text = "Show Reverse Inputs"
+script = ExtResource("7_davnj")
+
+[connection signal="pressed" from="ScrollContainer/CenterContainer/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]

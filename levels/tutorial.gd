@@ -36,7 +36,14 @@ func _ready() -> void:
 		},
 		{
 			"text": "[center][b]Well Done![/b][/center]\n" +
-			"You have taught the AI how to turn right using evolution! Now try to reach the next objective.",
+			"You have taught the AI how to turn right using evolution!",
+		},
+		{
+			"text": "[center][b]Mechanistic Interpretability[/b][/center]\n" +
+			"You can investigate how it works by enabling the raycasts or the network visualization from the right panel. Reverse-engineering neural networks like this is called [i]mechanistic interpretability[/i].",
+		},
+		{
+			"text": "Now try to reach the next objective.",
 		},
 		{
 			"objective": objectives.get_child(1),
@@ -46,7 +53,7 @@ func _ready() -> void:
 			"Press OK to continue to the next level.",
 		},
 		{
-			"callback": func(): get_tree().change_scene_to_file("res://levels/main.tscn")
+			"callback": func(): get_tree().change_scene_to_file("res://levels/level2.tscn")
 		}
 	])
 	right_panel.get_node("ScrollContainer/CenterContainer/VBoxContainer/PauseCheckBox").set_pressed.call_deferred(true)

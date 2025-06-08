@@ -1,4 +1,5 @@
 extends Node3D
+class_name MainNode
 
 @export var car_scene: PackedScene = preload("res://vehicles/sports_car_7rays.tscn")
 
@@ -27,6 +28,9 @@ var input_length: int = 0
 var output_length: int = 0
 var matrix: NDArray
 var bias: NDArray
+
+var best_car
+var best_car_i: int
 
 func _ready():
 	for i in range(pop_target):
@@ -79,6 +83,7 @@ func _physics_process(delta: float) -> void:
 	var input_matrix = nd.reshape(nd.array(inputs), [len(cars), 1, input_length])
 	
 	var output = nd.add(nd.matmul(input_matrix, matrix), bias)
+	output = nd.clip(output, -1.0, 1.0)
 	
 	for i in len(cars):
 		cars[i].set_inputs(output.get(i, 0, null))
@@ -87,8 +92,8 @@ func _physics_process(delta: float) -> void:
 		process_car(car)
 	
 	var cam_offset = -INF
-	var best_car = null
-	var best_car_i: int = -1
+	best_car = null
+	best_car_i = -1
 	for i in len(cars):
 		var car = cars[i]
 		if car.process_mode != PROCESS_MODE_DISABLED:
@@ -191,7 +196,7 @@ func add_car():
 
 func process_car(car):
 	var offset = path3d.curve.get_closest_offset(car.position)
-	if offset - road.segments[0].length > 20.0:
+	if offset - road.segments[0].length > 50.0:
 		var cut_length = road.extend()
 		distance_offset += cut_length
 

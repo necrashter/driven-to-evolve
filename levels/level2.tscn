@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccoa1lnwqcr0"]
+
+[ext_resource type="PackedScene" uid="uid://b6mppdtwfmrgd" path="res://levels/main.tscn" id="1_raxm7"]
+[ext_resource type="PackedScene" uid="uid://b85k7o14f20hk" path="res://gui/monologue.tscn" id="2_p1d34"]
+[ext_resource type="Script" uid="uid://d0pyrws83hx7h" path="res://levels/level2.gd" id="2_qyb5k"]
+[ext_resource type="PackedScene" uid="uid://dmnc8o7p4qybn" path="res://gui/objectives/distance_objective.tscn" id="4_py88r"]
+
+[node name="MainGame" instance=ExtResource("1_raxm7")]
+script = ExtResource("2_qyb5k")
+
+[node name="Monologue" parent="." index="7" instance=ExtResource("2_p1d34")]
+
+[node name="Objectives" type="VBoxContainer" parent="." index="8"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ObjectiveLabel" parent="Objectives" index="0" instance=ExtResource("4_py88r")]
+layout_mode = 2
+target_distance = 500.0
+
+[node name="ObjectiveLabel2" parent="Objectives" index="1" instance=ExtResource("4_py88r")]
+layout_mode = 2
+target_distance = 1000.0
