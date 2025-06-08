@@ -82,6 +82,14 @@ size_flags_vertical = 6
 action_mode = 0
 text = "Start Game"
 
+[node name="StartButton2" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+action_mode = 0
+text = "Sandbox Mode"
+
 [node name="Bottom" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -106,4 +114,5 @@ action_mode = 0
 text = "Credits"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/StartButton2" to="." method="_on_start_button_2_pressed"]
 [connection signal="pressed" from="Bottom/CreditsButton" to="." method="_on_credits_button_pressed"]
