@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdr748hqkaljw"]
+[gd_scene load_steps=8 format=3 uid="uid://cdr748hqkaljw"]
 
 [ext_resource type="Script" uid="uid://bc86npy5y3cdl" path="res://gui/right_panel.gd" id="1_350da"]
 [ext_resource type="Theme" uid="uid://durh0keniwv21" path="res://gui/theme.tres" id="1_tcjjm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://ckn2b62iyl3bc" path="res://gui/pause_check_box.gd" id="3_038xs"]
 [ext_resource type="Script" uid="uid://413kpcodqn2x" path="res://gui/speed_button.gd" id="4_enf8h"]
 [ext_resource type="Script" uid="uid://dyelu4vosirq5" path="res://gui/debug_check_box.gd" id="6_o0f2y"]
+[ext_resource type="Script" uid="uid://dlkpnmu3navoc" path="res://gui/network_check_box.gd" id="7_taadk"]
 
 [node name="RightPanel" type="Panel"]
 process_mode = 3
@@ -125,6 +126,14 @@ layout_mode = 2
 tooltip_text = "Show raycasts: red when colliding, green otherwise."
 text = "Show Raycasts (T)"
 script = ExtResource("6_o0f2y")
+
+[node name="NetworkCheckBox" type="CheckBox" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Visualize the neural network.
+
+Thickness determines the weight of connections. Red is negative, green positive."
+text = "Visualize Network"
+script = ExtResource("7_taadk")
 
 [connection signal="pressed" from="ScrollContainer/CenterContainer/VBoxContainer/AddPopButton" to="." method="_on_add_pop_button_pressed"]
 [connection signal="item_selected" from="ScrollContainer/CenterContainer/VBoxContainer/MutationButton" to="." method="_on_mutation_button_item_selected"]

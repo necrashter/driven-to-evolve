@@ -60,6 +60,6 @@ target_distance = 50.0
 [node name="ObjectiveLabel2" parent="Objectives" index="1" instance=ExtResource("6_aaho8")]
 layout_mode = 2
 
-[node name="Monologue" parent="." index="9" instance=ExtResource("7_c633x")]
+[node name="Monologue" parent="." index="10" instance=ExtResource("7_c633x")]
 
 [editable path="ProceduralRoad"]

@@ -56,6 +56,9 @@ func get_input_length() -> int:
 func get_output_length() -> int:
 	return 2
 
+func get_output_names() -> Array:
+	return ["Acceleration", "Steering"]
+
 func set_inputs(inputs: NDArray) -> void:
 	acc_input = inputs.get_float(0)
 	steer_input = inputs.get_float(1)

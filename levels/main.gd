@@ -19,6 +19,7 @@ var distance_offset: float = -10.0
 @onready var road = get_node_or_null("ProceduralRoad")
 @onready var path3d = get_node_or_null("ProceduralRoad/RoadPath3D")
 @onready var objectives = get_node_or_null("Objectives")
+@onready var visualizer = get_node_or_null("Visualizer")
 
 var cars: Array = []
 @export var pop_target: int = 5
@@ -51,6 +52,8 @@ func _ready():
 	if objectives:
 		remove_child(objectives)
 		left_panel.add_objectives(objectives)
+	if visualizer:
+		visualizer.output_names = cars[0].get_output_names()
 
 func on_change_mutation(mutation: float):
 	mutation_std = mutation
@@ -85,7 +88,9 @@ func _physics_process(delta: float) -> void:
 	
 	var cam_offset = -INF
 	var best_car = null
-	for car in cars:
+	var best_car_i: int = -1
+	for i in len(cars):
+		var car = cars[i]
 		if car.process_mode != PROCESS_MODE_DISABLED:
 			var offset = path3d.curve.get_closest_offset(car.position)
 			car.distance = offset + distance_offset
@@ -93,11 +98,19 @@ func _physics_process(delta: float) -> void:
 			if offset > cam_offset:
 				cam_offset = offset
 				best_car = car
+				best_car_i = i
 	if best_car:
 		$CameraBase.transform = $CameraBase.transform.interpolate_with(path3d.curve.sample_baked_with_rotation(cam_offset, true, true), .125)
 		if left_panel:
 			left_panel.update_stats(best_car.distance, best_car.duration)
+		if visualizer and visualizer.visible:
+			visualizer.matrix = matrix.get(best_car_i, null, null)
+			visualizer.bias = bias.get(best_car_i, 0, null)
+			visualizer.inputs = input_matrix.get(best_car_i, 0, null)
+			visualizer.outputs = output.get(best_car_i, 0, null)
+			visualizer.queue_redraw()
 	duration += delta
+	
 
 func next_gen():
 	end_generation.emit(generation)
