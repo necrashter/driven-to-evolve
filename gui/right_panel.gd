@@ -66,6 +66,16 @@ func on_population_update(population:int, target: int):
 		%PopLabel.text += "+" + str(target - population)
 	add_pop_price = int(pow(1.125, target))
 	%AddPopButton.text = "Add ($%d)" % add_pop_price
+	if population >= 120:
+		# Maintain a playable framerate by turning some settings off
+		ProjectSettings.set_setting("rendering/anti_aliasing/quality/msaa_3d", "Disabled (Fastest)")
+		ProjectSettings.set_setting("rendering/textures/default_filters/anisotropic_filtering_level", "Disabled (Fastest)")
+	elif population >= 70:
+		# Optimization - lower MSAA from 4x to 2x when too many cars are on level
+		ProjectSettings.set_setting("rendering/anti_aliasing/quality/msaa_3d", "2x (Average)")
+		# Also lower Texture Filtering from 16x to 4x
+		ProjectSettings.set_setting("rendering/textures/default_filters/anisotropic_filtering_level", "4x (Fast)")
+
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed(&"next_gen"):
