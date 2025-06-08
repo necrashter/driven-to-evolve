@@ -63,11 +63,10 @@ func on_pop_added():
 	population_update.emit(len(cars), pop_target)
 
 func _physics_process(delta: float) -> void:
+	if Global.auto_reset and all_crashed():
+		right_panel._on_next_button_pressed()
 	if right_panel.next_gen_requested:
 		right_panel.next_gen_requested = false
-		next_gen()
-		return
-	if Global.auto_reset and all_crashed():
 		next_gen()
 		return
 	
@@ -87,16 +86,17 @@ func _physics_process(delta: float) -> void:
 	var cam_offset = -INF
 	var best_car = null
 	for car in cars:
-		var offset = path3d.curve.get_closest_offset(car.position)
-		car.distance = offset + distance_offset
 		if car.process_mode != PROCESS_MODE_DISABLED:
+			var offset = path3d.curve.get_closest_offset(car.position)
+			car.distance = offset + distance_offset
 			car.duration = duration
-		if offset > cam_offset:
-			cam_offset = offset
-			best_car = car
-	$CameraBase.transform = path3d.curve.sample_baked_with_rotation(cam_offset, true, true)
-	if left_panel and best_car:
-		left_panel.update_stats(best_car.distance, best_car.duration)
+			if offset > cam_offset:
+				cam_offset = offset
+				best_car = car
+	if best_car:
+		$CameraBase.transform = $CameraBase.transform.interpolate_with(path3d.curve.sample_baked_with_rotation(cam_offset, true, true), .125)
+		if left_panel:
+			left_panel.update_stats(best_car.distance, best_car.duration)
 	duration += delta
 
 func next_gen():
@@ -119,6 +119,7 @@ func reset():
 		reset_car(car)
 	duration = 0.0
 	distance_offset = -10.0
+	$CameraBase.transform = path3d.curve.sample_baked_with_rotation(10.0, true, true)
 
 func reset_road() -> void:
 	if road:

@@ -51,6 +51,8 @@ func on_population_update(population:int, target: int):
 	%PopLabel.text = "Population: "+str(population)
 	if target > population:
 		%PopLabel.text += "+" + str(target - population)
+	add_pop_price = int(pow(1.125, target))
+	%AddPopButton.text = "Add ($%d)" % add_pop_price
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed(&"next_gen"):
@@ -101,7 +103,6 @@ func _on_add_pop_button_pressed() -> void:
 	if money >= add_pop_price:
 		money -= add_pop_price
 		pop_added.emit()
-
 
 func _on_topk_button_item_selected(index: int) -> void:
 	var meta = topk_options[index]
