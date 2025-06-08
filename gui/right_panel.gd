@@ -2,7 +2,14 @@ extends Control
 
 signal change_mutation(mutation: float)
 
-var money: int = 30
+var _money: int = 30
+var money: int:
+	get:
+		return _money
+	set(value):
+		_money = value
+		%MoneyLabel.text = "Money: " + str(money)
+
 var next_gen_requested: bool = false
 
 var previous_mutation_idx: int = 0
@@ -25,7 +32,6 @@ func get_mutation():
 func on_new_generation(generation):
 	money += 1
 	%GenerationLabel.text = "Generation: " + str(generation)
-	%MoneyLabel.text = "Money: " + str(money)
 	
 func on_population_update(population:int, target: int):
 	%PopLabel.text = "Population: "+str(population)
@@ -57,7 +63,6 @@ func _on_mutation_button_item_selected(index: int) -> void:
 		var price = meta['price']
 		if money >= price:
 			money -= price
-			%MoneyLabel.text = "Money: "+str(money)
 			meta['purchased'] = true
 			%MutationButton.set_item_text(index, get_mutation_text(meta))
 			change_mutation.emit(meta['mutation'])
@@ -81,5 +86,4 @@ signal pop_added
 func _on_add_pop_button_pressed() -> void:
 	if money >= add_pop_price:
 		money -= add_pop_price
-		%MoneyLabel.text = "Money: "+str(money)
 		pop_added.emit()
