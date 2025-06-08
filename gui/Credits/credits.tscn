@@ -75,7 +75,16 @@ This game uses [url=\"https://godotengine.org\"]Godot Engine[/url].
 
 This game uses the NumDot library, made by Ivorforce and its [url=\"https://github.com/Ivorforce/NumDot/graphs/contributors\"]contributors[/url].
 
-Vehicle model by [url=\"https://blendswap.com/blend/29351\"]Srijan Basu on Blend Swap[/url]."
+Vehicle model by [url=\"https://blendswap.com/blend/29351\"]Srijan Basu on Blend Swap[/url].
+
+Created using textures from ambientCG.com,
+licensed under the Creative Commons CC0 1.0 Universal License.
+
+This game uses these sounds from freesound:
+[url=\"https://freesound.org/s/475889/\"]ESE - WHOOSH - EPIC - Level Up.wav[/url] by EpicSoundEffects -- https://freesound.org/s/475889/ -- License: Creative Commons 0
+
+
+"
 
 [node name="CloseButton" type="Button" parent="."]
 layout_mode = 1
