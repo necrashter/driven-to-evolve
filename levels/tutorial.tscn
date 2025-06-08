@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://8hp4ivij7r3q"]
 
-[ext_resource type="PackedScene" uid="uid://b6mppdtwfmrgd" path="res://road/main.tscn" id="1_khcq3"]
+[ext_resource type="PackedScene" uid="uid://b6mppdtwfmrgd" path="res://levels/main.tscn" id="1_khcq3"]
 [ext_resource type="PackedScene" uid="uid://dk06xcftuc7go" path="res://road/procedural_road.tscn" id="2_jehdt"]
 [ext_resource type="Script" uid="uid://0i2khgo2q4o7" path="res://levels/tutorial.gd" id="2_ok11k"]
 

@@ -1,4 +1,4 @@
-extends "res://road/main.gd"
+extends "res://levels/main.gd"
 
 func _ready() -> void:
 	super._ready()
