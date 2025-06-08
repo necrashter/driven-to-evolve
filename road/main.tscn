@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6mppdtwfmrgd"]
+[gd_scene load_steps=7 format=3 uid="uid://b6mppdtwfmrgd"]
 
 [ext_resource type="Script" uid="uid://d03dwp54e4gy0" path="res://road/main.gd" id="1_l3rg6"]
 [ext_resource type="PackedScene" uid="uid://cdr748hqkaljw" path="res://gui/right_panel.tscn" id="3_i0pbo"]
 [ext_resource type="PackedScene" uid="uid://2pf2a0s6rm3r" path="res://gui/left_panel.tscn" id="4_e16ue"]
-[ext_resource type="Script" uid="uid://d3wosol3q70sr" path="res://vehicles/follow_camera.gd" id="4_ft6sg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_43o5t"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -50,10 +49,6 @@ directional_shadow_max_distance = 80.0
 transform = Transform3D(1, 0, 0, 0, 0.516533, 0.856267, 0, -0.856267, 0.516533, 0, 26.4679, 8.50163)
 fov = 74.0
 near = 0.1
-script = ExtResource("4_ft6sg")
-min_distance = 4.0
-max_distance = 29.0
-height = 27.0
 
 [node name="AudioListener3D" type="AudioListener3D" parent="CameraBase/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 0.516533, -0.856267, 0, 0.856267, 0.516533, 0, 0, 0)
