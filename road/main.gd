@@ -2,6 +2,7 @@ extends Node3D
 
 const CAR: PackedScene = preload("res://vehicles/car.tscn")
 
+signal end_generation(generation: int)
 signal new_generation(generation: int)
 signal population_update(population: int, target: int)
 
@@ -9,6 +10,7 @@ var generation: int = 0
 var init_std: float = 0.1
 var mutation_std: float = 0.02
 var duration: float = 0.0
+var distance_offset: float = -10.0
 
 @onready var cars_node = $Cars
 @onready var right_panel = get_node_or_null("RightPanel")
@@ -38,7 +40,7 @@ func _ready():
 		right_panel.change_mutation.connect(on_change_mutation)
 		on_change_mutation(right_panel.get_mutation())
 	if left_panel:
-		new_generation.connect(left_panel.on_new_generation)
+		end_generation.connect(left_panel.on_end_generation)
 
 func on_change_mutation(mutation: float):
 	mutation_std = mutation
@@ -50,6 +52,7 @@ func on_pop_added():
 func _physics_process(delta: float) -> void:
 	if right_panel.next_gen_requested:
 		right_panel.next_gen_requested = false
+		end_generation.emit(generation)
 		generation += 1
 		selection()
 		reset()
@@ -73,11 +76,18 @@ func _physics_process(delta: float) -> void:
 		process_car(car)
 	
 	var cam_offset = -INF
+	var best_car = null
 	for car in cars:
-		cam_offset = max(cam_offset, path3d.curve.get_closest_offset(car.position))
+		var offset = path3d.curve.get_closest_offset(car.position)
+		car.distance = offset + distance_offset
+		if car.process_mode != PROCESS_MODE_DISABLED:
+			car.duration = duration
+		if offset > cam_offset:
+			cam_offset = offset
+			best_car = car
 	$CameraBase.transform = path3d.curve.sample_baked_with_rotation(cam_offset, true, true)
-	if left_panel:
-		left_panel.update_stats(cam_offset, duration)
+	if left_panel and best_car:
+		left_panel.update_stats(best_car.distance, best_car.duration)
 	duration += delta
 
 func reset():
@@ -90,6 +100,7 @@ func reset():
 	for car in cars:
 		reset_car(car)
 	duration = 0.0
+	distance_offset = -10.0
 
 func selection():
 	# 1. Sort cars by offset (descending)
@@ -129,7 +140,8 @@ func add_car():
 func process_car(car):
 	var offset = path3d.curve.get_closest_offset(car.position)
 	if offset - road.segments[0].length > 20.0:
-		road.extend()
+		var cut_length = road.extend()
+		distance_offset += cut_length
 
 	var closest_point = path3d.curve.get_closest_point(car.position)
 	if car.position.y - closest_point.y < -20.0:

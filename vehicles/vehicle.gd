@@ -43,6 +43,8 @@ func reset():
 	steering = 0.0
 	steer_input = 0.0
 	acc_input = 0.0
+	distance = 0.0
+	duration = 0.0
 
 func get_ray_inputs():
 	var output = []
@@ -55,3 +57,6 @@ func get_input_length() -> int:
 
 func on_fell_down():
 	process_mode = Node.PROCESS_MODE_DISABLED
+
+var distance: float = 0.0
+var duration: float = 0.0
