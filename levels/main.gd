@@ -65,12 +65,10 @@ func on_pop_added():
 func _physics_process(delta: float) -> void:
 	if right_panel.next_gen_requested:
 		right_panel.next_gen_requested = false
-		end_generation.emit(generation)
-		generation += 1
-		selection()
-		reset()
-		new_generation.emit(generation)
-		population_update.emit(len(cars), pop_target)
+		next_gen()
+		return
+	if Global.auto_reset and all_crashed():
+		next_gen()
 		return
 	
 	var inputs = []
@@ -100,6 +98,20 @@ func _physics_process(delta: float) -> void:
 	if left_panel and best_car:
 		left_panel.update_stats(best_car.distance, best_car.duration)
 	duration += delta
+
+func next_gen():
+	end_generation.emit(generation)
+	generation += 1
+	selection()
+	reset()
+	new_generation.emit(generation)
+	population_update.emit(len(cars), pop_target)
+
+func all_crashed():
+	for car in cars:
+		if car.process_mode != PROCESS_MODE_DISABLED:
+			return false
+	return true
 
 func reset():
 	reset_road()
