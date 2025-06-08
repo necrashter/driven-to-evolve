@@ -1,5 +1,8 @@
 extends "res://levels/main.gd"
 
+func _enter_tree() -> void:
+	$RightPanel._money = 5
+
 func _ready() -> void:
 	super._ready()
 	road.segments[0].place_block(path3d.curve, road.road_width, 1)
