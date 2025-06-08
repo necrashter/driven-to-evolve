@@ -44,6 +44,7 @@ func _ready():
 		on_change_topk(right_panel.get_topk())
 	if left_panel:
 		end_generation.connect(left_panel.on_end_generation)
+	Global.objective_complete.connect(on_objective_complete)
 
 func on_change_mutation(mutation: float):
 	mutation_std = mutation
@@ -168,3 +169,8 @@ func process_car(car):
 func reset_car(car):
 	car.transform = path3d.curve.sample_baked_with_rotation(10.0, true, true)
 	car.reset()
+
+func on_objective_complete(objective: ObjectiveLabel) -> void:
+	var anim = preload("res://gui/text_anim.tscn").instantiate()
+	anim.get_node("Sublabel").text = objective.text
+	add_child(anim)
