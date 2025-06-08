@@ -9,6 +9,7 @@ signal population_update(population: int, target: int)
 var generation: int = 0
 var init_std: float = 0.1
 var mutation_std: float = 0.02
+var topk = 0.25
 var duration: float = 0.0
 var distance_offset: float = -10.0
 
@@ -39,12 +40,17 @@ func _ready():
 		right_panel.pop_added.connect(on_pop_added)
 		right_panel.change_mutation.connect(on_change_mutation)
 		on_change_mutation(right_panel.get_mutation())
+		right_panel.change_topk.connect(on_change_topk)
+		on_change_topk(right_panel.get_topk())
 	if left_panel:
 		end_generation.connect(left_panel.on_end_generation)
 
 func on_change_mutation(mutation: float):
 	mutation_std = mutation
-	
+
+func on_change_topk(new_topk: float):
+	topk = new_topk
+
 func on_pop_added():
 	pop_target += 1
 	population_update.emit(len(cars), pop_target)
@@ -110,6 +116,17 @@ func selection():
 		car_offsets.append({ "car": car, "offset": offset })
 	car_offsets.sort_custom(func(a, b): return a["offset"] > b["offset"])
 	
+	# Determine top-k
+	var top_k_int: int
+	if typeof(topk) == TYPE_INT:
+		top_k_int = topk
+	else:
+		top_k_int = roundi(topk * len(cars))
+		if top_k_int < 1:
+			top_k_int = 1
+	if len(cars) < top_k_int:
+		top_k_int = len(cars)
+	
 	for i in range(pop_target - len(cars)):
 		add_car()
 	
@@ -121,15 +138,16 @@ func selection():
 	# 2. Update matrix and bias
 	var rng = nd.default_rng()
 	for i in range(pop_target):
-		var source_idx = 0#i % 3  # top-3 cars are at indices 0,1,2
+		var source_idx = i % top_k_int
 		var src_car = car_offsets[source_idx]["car"]
 		var src_idx = int(src_car.name)  # since car.name == index
-		var m = nd.add(smatrix[src_idx], nd.multiply(rng.randn([1, input_length, 2]), mutation_std))
-		new_matrix.append(m)
-		var b = nd.add(sbias[src_idx], nd.multiply(rng.randn([1, 1, 2]), mutation_std))
-		new_bias.append(b)
+		new_matrix.append(smatrix[src_idx])
+		new_bias.append(sbias[src_idx])
 	matrix = nd.concatenate(new_matrix, 0)
 	bias = nd.concatenate(new_bias, 0)
+	if mutation_std > 0.0:
+		matrix = nd.add(matrix, nd.multiply(rng.randn(matrix.shape()), mutation_std))
+		bias = nd.add(bias, nd.multiply(rng.randn(bias.shape()), mutation_std))
 
 func add_car():
 	var car = CAR.instantiate()

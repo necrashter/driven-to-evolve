@@ -1,6 +1,7 @@
 extends Control
 
 signal change_mutation(mutation: float)
+signal change_topk(topk: float)
 
 var _money: int = 30
 var money: int:
@@ -18,6 +19,12 @@ var mutation_options = [
 	{"mutation": 0.01, "purchased": false, "price": 5},
 ]
 
+var previous_topk_idx: int = 0
+var topk_options = [
+	{"topk": 0.25, "purchased": true},
+	{"topk": 1, "purchased": false, "price": 5},
+]
+
 func _ready() -> void:
 	%GenerationLabel.text = "Generation: 0"
 	%MoneyLabel.text = "Money: "+str(money)
@@ -25,9 +32,16 @@ func _ready() -> void:
 		var meta = mutation_options[i]
 		%MutationButton.add_item(get_mutation_text(meta), i)
 	%MutationButton.select(0)
+	for i in range(len(topk_options)):
+		var meta = topk_options[i]
+		%TopkButton.add_item(get_topk_text(meta), i)
+	%TopkButton.select(0)
 
 func get_mutation():
 	return mutation_options[%MutationButton.selected]['mutation']
+
+func get_topk():
+	return topk_options[%TopkButton.selected]['topk']
 
 func on_new_generation(generation):
 	money += 1
@@ -87,3 +101,32 @@ func _on_add_pop_button_pressed() -> void:
 	if money >= add_pop_price:
 		money -= add_pop_price
 		pop_added.emit()
+
+
+func _on_topk_button_item_selected(index: int) -> void:
+	var meta = topk_options[index]
+	if meta['purchased']:
+		change_topk.emit(meta['topk'])
+		previous_topk_idx = index
+	else:
+		# Buy
+		var price = meta['price']
+		if money >= price:
+			money -= price
+			meta['purchased'] = true
+			%TopkButton.set_item_text(index, get_topk_text(meta))
+			change_topk.emit(meta['topk'])
+			previous_topk_idx = index
+		else:
+			%TopkButton.select(previous_topk_idx)
+
+func get_topk_text(meta) -> String:
+	var topk = meta['topk']
+	var out: String
+	if typeof(topk) == TYPE_INT:
+		out = "Top-" + str(int(topk))
+	else:
+		out = "Top-%d%%" % roundi(topk*100.0)
+	if not meta['purchased']:
+		out += " ($%d)" % meta['price']
+	return out
