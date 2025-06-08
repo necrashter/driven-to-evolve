@@ -17,12 +17,25 @@ var previous_mutation_idx: int = 0
 var mutation_options = [
 	{"mutation": 0.0, "purchased": true},
 	{"mutation": 0.01, "purchased": false, "price": 5},
+	{"mutation": 0.02, "purchased": false, "price": 8},
+	{"mutation": 0.03, "purchased": false, "price": 16},
+	{"mutation": 0.04, "purchased": false, "price": 24},
+	{"mutation": 0.05, "purchased": false, "price": 36},
+	{"mutation": 0.10, "purchased": false, "price": 50},
 ]
 
 var previous_topk_idx: int = 0
 var topk_options = [
 	{"topk": 0.25, "purchased": true},
-	{"topk": 1, "purchased": false, "price": 5},
+	{"topk": 0.10, "purchased": false, "price": 6},
+	{"topk": 0.08, "purchased": false, "price": 15},
+	{"topk": 0.05, "purchased": false, "price": 20},
+	{"topk": 0.04, "purchased": false, "price": 25},
+	{"topk": 0.02, "purchased": false, "price": 30},
+	{"topk": 0.01, "purchased": false, "price": 60},
+	{"topk": 3, "purchased": false, "price": 35},
+	{"topk": 2, "purchased": false, "price": 50},
+	{"topk": 1, "purchased": false, "price": 75},
 ]
 
 func _ready() -> void:
