@@ -123,7 +123,7 @@ script = ExtResource("4_enf8h")
 [node name="DebugCheckBox" type="CheckBox" parent="ScrollContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "Show raycasts: red when colliding, green otherwise."
-text = "Show Raycasts"
+text = "Show Raycasts (T)"
 script = ExtResource("6_o0f2y")
 
 [connection signal="pressed" from="ScrollContainer/CenterContainer/VBoxContainer/AddPopButton" to="." method="_on_add_pop_button_pressed"]
