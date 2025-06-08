@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://durh0keniwv21"]
+
+[ext_resource type="Texture2D" uid="uid://fj1srp67s1ye" path="res://gui/checkbox_checked.png" id="1_jlndv"]
+[ext_resource type="Texture2D" uid="uid://dpajsuiq631dr" path="res://gui/checkbox.png" id="2_a8th1"]
+
+[resource]
+CheckBox/icons/checked = ExtResource("1_jlndv")
+CheckBox/icons/unchecked = ExtResource("2_a8th1")

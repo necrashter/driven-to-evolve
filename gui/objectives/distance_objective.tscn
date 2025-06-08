@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmnc8o7p4qybn"]
+
+[ext_resource type="PackedScene" uid="uid://b8kq5ht7iagr5" path="res://gui/objective_label.tscn" id="1_advw8"]
+[ext_resource type="Script" uid="uid://b56put41ffaii" path="res://gui/objectives/distance_objective.gd" id="2_imquw"]
+
+[node name="ObjectiveLabel" instance=ExtResource("1_advw8")]
+script = ExtResource("2_imquw")
+target_distance = 100.0

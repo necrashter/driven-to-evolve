@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8kq5ht7iagr5"]
+
+[ext_resource type="Texture2D" uid="uid://fj1srp67s1ye" path="res://gui/checkbox_checked.png" id="1_gcdtc"]
+[ext_resource type="Script" uid="uid://b27u0rkwyfwtv" path="res://gui/objective_label.gd" id="1_x7g5d"]
+[ext_resource type="Texture2D" uid="uid://dpajsuiq631dr" path="res://gui/checkbox.png" id="2_2ytmc"]
+
+[sub_resource type="Theme" id="Theme_7vcqc"]
+CheckBox/colors/font_disabled_color = Color(0.87451, 0.87451, 0.87451, 1)
+CheckBox/icons/checked_disabled = ExtResource("1_gcdtc")
+CheckBox/icons/unchecked_disabled = ExtResource("2_2ytmc")
+
+[node name="ObjectiveLabel" type="CheckBox"]
+custom_minimum_size = Vector2(240, 0)
+offset_right = 240.0
+offset_bottom = 31.0
+mouse_filter = 2
+theme = SubResource("Theme_7vcqc")
+disabled = true
+text = "Objective"
+autowrap_mode = 3
+script = ExtResource("1_x7g5d")

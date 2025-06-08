@@ -1,12 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://2pf2a0s6rm3r"]
+[gd_scene load_steps=4 format=3 uid="uid://2pf2a0s6rm3r"]
 
+[ext_resource type="Theme" uid="uid://durh0keniwv21" path="res://gui/theme.tres" id="1_2h8ok"]
 [ext_resource type="Script" uid="uid://duit1iwitndwt" path="res://gui/left_panel.gd" id="1_4jjva"]
+[ext_resource type="PackedScene" uid="uid://dmnc8o7p4qybn" path="res://gui/objectives/distance_objective.tscn" id="2_jojih"]
 
 [node name="LeftPanel" type="Panel"]
 custom_minimum_size = Vector2(272, 0)
 anchors_preset = 9
 anchor_bottom = 1.0
 grow_vertical = 2
+theme = ExtResource("1_2h8ok")
 script = ExtResource("1_4jjva")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
@@ -53,7 +56,22 @@ custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SpeedLabel2" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+[node name="ObjectivesHeader" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+text = "Objectives"
+horizontal_alignment = 1
+
+[node name="ObjectiveLabel" parent="ScrollContainer/CenterContainer/VBoxContainer" instance=ExtResource("2_jojih")]
+layout_mode = 2
+target_distance = 10.0
+
+[node name="HSeparator2" type="HSeparator" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header2" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 text = "Previous Runs"
