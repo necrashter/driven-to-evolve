@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdr748hqkaljw"]
+[gd_scene load_steps=5 format=3 uid="uid://cdr748hqkaljw"]
 
 [ext_resource type="Script" uid="uid://bc86npy5y3cdl" path="res://gui/right_panel.gd" id="1_350da"]
 [ext_resource type="Theme" uid="uid://durh0keniwv21" path="res://gui/theme.tres" id="1_tcjjm"]
 [ext_resource type="Script" uid="uid://ckn2b62iyl3bc" path="res://gui/pause_check_box.gd" id="3_038xs"]
+[ext_resource type="Script" uid="uid://413kpcodqn2x" path="res://gui/speed_button.gd" id="4_enf8h"]
 
 [node name="RightPanel" type="Panel"]
 process_mode = 3
@@ -95,6 +96,22 @@ layout_mode = 2
 layout_mode = 2
 text = "Pause"
 script = ExtResource("3_038xs")
+
+[node name="SpeedButton" type="OptionButton" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Determines the number of best cars that propagate to the next generation.
+Can be a ratio (percentage) or a constant number."
+selected = 0
+item_count = 3
+popup/item_0/text = "1x Speed"
+popup/item_0/id = 0
+popup/item_1/text = "2x Speed"
+popup/item_1/id = 1
+popup/item_2/text = "4x Speed"
+popup/item_2/id = 2
+script = ExtResource("4_enf8h")
 
 [connection signal="pressed" from="ScrollContainer/CenterContainer/VBoxContainer/AddPopButton" to="." method="_on_add_pop_button_pressed"]
 [connection signal="item_selected" from="ScrollContainer/CenterContainer/VBoxContainer/MutationButton" to="." method="_on_mutation_button_item_selected"]
