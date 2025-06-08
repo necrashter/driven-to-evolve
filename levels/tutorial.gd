@@ -3,7 +3,7 @@ extends "res://levels/main.gd"
 func _ready() -> void:
 	super._ready()
 	road.segments[0].place_block(path3d.curve, road.road_width, 1)
-	road.segments[0].place_arch(path3d.curve, road.road_width, path3d.road_len - 5)
+	road.segments[0].place_arch(path3d.curve, road.road_width, 110.0)
 	print("road ", path3d.road_len)
 	$Monologue.prepare([
 		{
@@ -36,9 +36,20 @@ func _ready() -> void:
 		},
 		{
 			"text": "[center][b]Well Done![/b][/center]\n" +
-			"This game simulates evolutoin.",
+			"You have taught the AI how to turn right using evolution! Now try to reach the next objective.",
 		},
+		{
+			"objective": objectives.get_child(1),
+		},
+		{
+			"text": "[center][b]Well Done![/b][/center]\n" +
+			"Press OK to continue to the next level.",
+		},
+		{
+			"callback": func(): get_tree().change_scene_to_file("res://levels/main.tscn")
+		}
 	])
+	right_panel.get_node("ScrollContainer/CenterContainer/VBoxContainer/PauseCheckBox").set_pressed.call_deferred(true)
 
 func reset_road() -> void:
 	pass

@@ -11,7 +11,7 @@
 
 [sub_resource type="Curve3D" id="Curve3D_jehdt"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, -10, 0, 0, 10, 0, 0, 30, 10, 0, 0, -10, 0, 0, -15, 0, 45, 10, 0, 0, -10, 0, 0, -75, 0, 45, 0, 0, 10, 0, 0, -10, -90, 0, 30, 0, 0, 10, 0, 0, -10, -90, 0, 0, -10, 0, 0, 0, 0, 0, -75, 0, -15, 0, 0, 0, 10, 0, 0, -15, 0, -15, 0, 0, -10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, -10, 0, 0, 10, 0, 0, 30, 10, 0, 0, -10, 0, 0, -15, 0, 45, 10, 0, 0, -10, 0, 0, -55, 0, 45, 0, 0, 10, 0, 0, -10, -70, 0, 30, 0, 0, 10, 0, 0, -10, -70, 0, 0, -10, 0, 0, 0, 0, 0, -55, 0, -15, 0, 0, 0, 10, 0, 0, -15, 0, -15, 0, 0, -10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 10
@@ -25,6 +25,9 @@ script = ExtResource("2_ok11k")
 car_scene = ExtResource("3_gdrka")
 init_std = 0.0
 pop_target = 1
+
+[node name="CameraBase" parent="." index="3"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 20)
 
 [node name="ProceduralRoad" parent="." index="6" instance=ExtResource("2_jehdt")]
 road_width = 15.0
@@ -52,7 +55,10 @@ offset_bottom = 40.0
 
 [node name="ObjectiveLabel" parent="Objectives" index="0" instance=ExtResource("6_aaho8")]
 layout_mode = 2
-target_distance = 40.0
+target_distance = 50.0
+
+[node name="ObjectiveLabel2" parent="Objectives" index="1" instance=ExtResource("6_aaho8")]
+layout_mode = 2
 
 [node name="Monologue" parent="." index="9" instance=ExtResource("7_c633x")]
 

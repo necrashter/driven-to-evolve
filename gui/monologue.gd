@@ -12,6 +12,8 @@ func prepare(new_data: Array) -> void:
 	enable_datum(data[current])
 
 func enable_datum(datum: Dictionary) -> void:
+	if datum.has("callback"):
+		datum['callback'].call()
 	if datum.has("text"):
 		%RichTextLabel.text = datum["text"]
 		show()

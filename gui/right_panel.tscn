@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdr748hqkaljw"]
+[gd_scene load_steps=4 format=3 uid="uid://cdr748hqkaljw"]
 
 [ext_resource type="Script" uid="uid://bc86npy5y3cdl" path="res://gui/right_panel.gd" id="1_350da"]
+[ext_resource type="Theme" uid="uid://durh0keniwv21" path="res://gui/theme.tres" id="1_tcjjm"]
+[ext_resource type="Script" uid="uid://ckn2b62iyl3bc" path="res://gui/pause_check_box.gd" id="3_038xs"]
 
 [node name="RightPanel" type="Panel"]
+process_mode = 3
 custom_minimum_size = Vector2(272, 0)
 anchors_preset = 11
 anchor_left = 1.0
@@ -10,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
+theme = ExtResource("1_tcjjm")
 script = ExtResource("1_350da")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
@@ -76,16 +80,21 @@ size_flags_horizontal = 3
 tooltip_text = "Determines the number of best cars that propagate to the next generation.
 Can be a ratio (percentage) or a constant number."
 
-[node name="HSeparator" type="HSeparator" parent="ScrollContainer/CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(240, 0)
-layout_mode = 2
-
 [node name="NextButton" type="Button" parent="ScrollContainer/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Create the next generation and restart the simulation."
 text = "Next Generation (R)"
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+
+[node name="PauseCheckBox" type="CheckBox" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Pause"
+script = ExtResource("3_038xs")
 
 [connection signal="pressed" from="ScrollContainer/CenterContainer/VBoxContainer/AddPopButton" to="." method="_on_add_pop_button_pressed"]
 [connection signal="item_selected" from="ScrollContainer/CenterContainer/VBoxContainer/MutationButton" to="." method="_on_mutation_button_item_selected"]

@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 func _on_next_button_pressed() -> void:
 	next_gen_requested = true
 	%NextButton.disabled = true
-	var tween = create_tween()
+	var tween = get_parent().create_tween()
 	tween.tween_interval(1.0)
 	tween.tween_callback(func():
 		%NextButton.disabled = false
