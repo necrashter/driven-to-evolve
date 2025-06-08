@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://nowp70b2mbud"]
+
+[ext_resource type="PackedScene" uid="uid://dm740w1ieanmw" path="res://vehicles/sports_car.tscn" id="1_ltody"]
+[ext_resource type="PackedScene" uid="uid://c17qln03185b3" path="res://vehicles/rays7.tscn" id="2_or4gj"]
+
+[node name="Car" instance=ExtResource("1_ltody")]
+
+[node name="RayCasts" parent="." index="7" instance=ExtResource("2_or4gj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

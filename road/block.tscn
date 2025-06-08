@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1x8jus7yv6cn"]
+
+[ext_resource type="Material" uid="uid://d33khyiglywww" path="res://road/neon.material" id="1_oh606"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w20p3"]
+size = Vector3(20, 3, 1)
+
+[node name="Block" type="StaticBody3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+material_override = ExtResource("1_oh606")
+size = Vector3(20, 3, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_w20p3")

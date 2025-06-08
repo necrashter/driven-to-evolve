@@ -1,6 +1,6 @@
 extends Node3D
 
-const CAR: PackedScene = preload("res://vehicles/car.tscn")
+@export var car_scene: PackedScene = preload("res://vehicles/sports_car_7rays.tscn")
 
 signal end_generation(generation: int)
 signal new_generation(generation: int)
@@ -154,7 +154,7 @@ func selection():
 		bias = nd.add(bias, nd.multiply(rng.randn(bias.shape()), mutation_std))
 
 func add_car():
-	var car = CAR.instantiate()
+	var car = car_scene.instantiate()
 	car.name = str($Cars.get_child_count())
 	$Cars.add_child(car)
 	cars.append(car)

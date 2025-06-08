@@ -12,6 +12,7 @@ const ROAD_MAT := preload("res://road/road.material")
 @export var segment_count: int = 6
 @export var lane_count: int = 4
 @export var random_items: bool = true
+@export var cyclic: bool = false
 static var z_step: float = 1.0
 
 @onready var path3d = $RoadPath3D
@@ -45,6 +46,7 @@ func _ready():
 			Vector2(-r, 0.0),
 		]),
 		ROAD_MAT,
+		cyclic,
 	)
 	barrier_right = RoadMesh.new(
 		path3d,
@@ -55,6 +57,7 @@ func _ready():
 			Vector2(rb + barrier_width, 0.0),
 		]),
 		NEON_MAT,
+		cyclic,
 	)
 	barrier_left = RoadMesh.new(
 		path3d,
@@ -65,6 +68,7 @@ func _ready():
 			Vector2(-rb, 0.0),
 		]),
 		NEON_MAT,
+		cyclic,
 	)
 	add_child(road_mesh)
 	add_child(barrier_left)

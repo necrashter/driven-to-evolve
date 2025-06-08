@@ -5,11 +5,13 @@ class_name RoadMesh extends Node3D
 @export var polygon: PackedVector2Array
 @export var material: Material
 @export var u_increment: float = 0.05
+@export var cyclic: bool = false
 
-func _init(road, polygon, material):
+func _init(road, polygon, material, cyclic):
 	self.road = road
 	self.polygon = polygon
 	self.material = material
+	self.cyclic = cyclic
 
 var current_offset = 0
 var current_u = 0.0
@@ -45,6 +47,19 @@ func build():
 		current_offset += ProceduralRoad.z_step
 		current_u += u_increment * ProceduralRoad.z_step
 	
+	if cyclic:
+		current_offset = road.road_len
+		current_u += u_increment * (road.road_len-current_u)
+		rows += 1
+		for i in range(len(polygon)):
+			var vec = polygon[i]
+			var vert = Vector3(vec.x, vec.y, 0)
+			var t = road.curve.sample_baked_with_rotation(current_offset, true, true)
+			verts.append(t * vert)
+			normals.append(t.basis.y)
+			var v = i / len(polygon)
+			uvs.append(Vector2(current_u, v))
+	
 	# Generate indices
 	for i in range(rows):
 		for j in range(columns):
@@ -62,6 +77,7 @@ func build():
 			indices.append(bottom_left)
 			indices.append(bottom_right)
 
+	
 	# Assign arrays to surface array.
 	surface_array[Mesh.ARRAY_VERTEX] = verts
 	surface_array[Mesh.ARRAY_TEX_UV] = uvs

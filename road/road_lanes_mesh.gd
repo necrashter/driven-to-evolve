@@ -4,6 +4,7 @@ class_name RoadLanesMesh extends Node3D
 @export var road: RoadPath3D
 @export var material: Material
 @export var width: float = 0.5
+@export var cyclic: bool = false
 
 # To prevent z-fighting
 const LANE_Y: float = 0.08
@@ -44,7 +45,7 @@ func build():
 				var u = current_offset / 20.0
 				uvs.append(Vector2(u, v))
 		current_offset += ProceduralRoad.z_step
-		
+	
 	# Generate indices
 	var offsets = len(lane_offsets)
 	for i in range(rows):
@@ -60,6 +61,22 @@ func build():
 				indices.append(o + offsets * bottom_left)
 				indices.append(o + offsets * top_right)
 
+				indices.append(o + offsets * top_right)
+				indices.append(o + offsets * bottom_left)
+				indices.append(o + offsets * bottom_right)
+	
+	if cyclic:
+		# Connect last row to first row (wrap vertically)
+		for j in range(columns):
+			for o in range(offsets):
+				var top_left = (rows - 1) * (columns + 1) + j
+				var top_right = top_left + 1
+				var bottom_left = j  # first row
+				var bottom_right = bottom_left + 1
+				# Two triangles per quad (wrapping face)
+				indices.append(o + offsets * top_left)
+				indices.append(o + offsets * bottom_left)
+				indices.append(o + offsets * top_right)
 				indices.append(o + offsets * top_right)
 				indices.append(o + offsets * bottom_left)
 				indices.append(o + offsets * bottom_right)
