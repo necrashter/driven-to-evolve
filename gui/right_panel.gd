@@ -64,7 +64,7 @@ func on_population_update(population:int, target: int):
 	%PopLabel.text = "Population: "+str(population)
 	if target > population:
 		%PopLabel.text += "+" + str(target - population)
-	add_pop_price = int(pow(1.125, target))
+	add_pop_price = int(pow(add_pop_price_base, target))
 	%AddPopButton.text = "Add ($%d)" % add_pop_price
 	if population >= 120:
 		# Maintain a playable framerate by turning some settings off
@@ -120,6 +120,7 @@ func get_mutation_text(meta) -> String:
 		out += " ($%d)" % meta['price']
 	return out
 
+var add_pop_price_base: float = 1.125
 var add_pop_price: int = 1
 signal pop_added
 func _on_add_pop_button_pressed() -> void:

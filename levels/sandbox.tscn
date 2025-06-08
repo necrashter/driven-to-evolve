@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4rkvxx7wp0fh"]
+
+[ext_resource type="PackedScene" uid="uid://b6mppdtwfmrgd" path="res://levels/main.tscn" id="1_wfhpi"]
+[ext_resource type="Script" uid="uid://8bnmsfuynw3b" path="res://levels/sandbox.gd" id="2_whpuv"]
+[ext_resource type="PackedScene" uid="uid://b8kq5ht7iagr5" path="res://gui/objective_label.tscn" id="3_85hcc"]
+
+[node name="MainGame" instance=ExtResource("1_wfhpi")]
+script = ExtResource("2_whpuv")
+
+[node name="Objectives" type="VBoxContainer" parent="." index="7"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ObjectiveLabel" parent="Objectives" index="0" instance=ExtResource("3_85hcc")]
+layout_mode = 2
+button_pressed = true
+text = "Sandbox Mode"
