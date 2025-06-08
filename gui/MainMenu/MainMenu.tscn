@@ -1,14 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckvqraq6j1okh"]
+[gd_scene load_steps=3 format=3 uid="uid://ckvqraq6j1okh"]
 
 [ext_resource type="Script" uid="uid://b2b3rhd3hx6q3" path="res://gui/MainMenu/MainMenu.gd" id="1_36t4u"]
-[ext_resource type="Texture2D" uid="uid://bqyy8utox7n65" path="res://gui/MainMenu/bg.png" id="2_srpow"]
-[ext_resource type="Shader" uid="uid://bhgamt5n13rrc" path="res://gui/MainMenu/blur.gdshader" id="3_abyj2"]
-[ext_resource type="Texture2D" uid="uid://ban4itupyhv3q" path="res://gui/MainMenu/white.png" id="4_5ct5r"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_68v1x"]
-shader = ExtResource("3_abyj2")
-shader_parameter/strength = 3.3
-shader_parameter/mix_percentage = 0.3
 
 [sub_resource type="FontVariation" id="FontVariation_hqcvw"]
 variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
@@ -25,24 +17,6 @@ grow_vertical = 2
 size_flags_horizontal = 2
 size_flags_vertical = 2
 script = ExtResource("1_36t4u")
-
-[node name="bg" type="TextureRect" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("2_srpow")
-
-[node name="Blur" type="TextureRect" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_68v1x")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_5ct5r")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
@@ -83,6 +57,14 @@ size_flags_vertical = 6
 action_mode = 0
 text = "Start Game"
 
+[node name="StartButton3" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+action_mode = 0
+text = "Skip Tutorial"
+
 [node name="StartButton2" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
@@ -115,5 +97,6 @@ action_mode = 0
 text = "Credits"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/StartButton3" to="." method="_on_start_button_3_pressed"]
 [connection signal="pressed" from="VBoxContainer/StartButton2" to="." method="_on_start_button_2_pressed"]
 [connection signal="pressed" from="Bottom/CreditsButton" to="." method="_on_credits_button_pressed"]

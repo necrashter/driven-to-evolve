@@ -1,14 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyc2u3splrhep"]
+[gd_scene load_steps=2 format=3 uid="uid://cyc2u3splrhep"]
 
-[ext_resource type="Texture2D" uid="uid://bqyy8utox7n65" path="res://gui/MainMenu/bg.png" id="1_j61b3"]
 [ext_resource type="Script" uid="uid://bxnipnde4vd07" path="res://gui/Credits/credits.gd" id="1_r2sbb"]
-[ext_resource type="Shader" uid="uid://drod7b0a3ayks" path="res://gui/Credits/darker_blur.gdshader" id="2_r2sbb"]
-[ext_resource type="Texture2D" uid="uid://ban4itupyhv3q" path="res://gui/MainMenu/white.png" id="3_cobx6"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r2sbb"]
-shader = ExtResource("2_r2sbb")
-shader_parameter/strength = 8.0
-shader_parameter/mix_percentage = 0.5
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -18,22 +10,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r2sbb")
-
-[node name="bg" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_j61b3")
-
-[node name="Blur" type="TextureRect" parent="."]
-material = SubResource("ShaderMaterial_r2sbb")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_cobx6")
 
 [node name="CreditsPanel" type="Panel" parent="."]
 custom_minimum_size = Vector2(500, 500)
@@ -75,7 +51,7 @@ This game uses [url=\"https://godotengine.org\"]Godot Engine[/url].
 
 This game uses the NumDot library, made by Ivorforce and its [url=\"https://github.com/Ivorforce/NumDot/graphs/contributors\"]contributors[/url].
 
-Vehicle model by [url=\"https://blendswap.com/blend/29351\"]Srijan Basu on Blend Swap[/url].
+Car model is based on a model by [url=\"https://blendswap.com/blend/29351\"]Srijan Basu on Blend Swap[/url].
 
 Created using textures from ambientCG.com,
 licensed under the Creative Commons CC0 1.0 Universal License.

@@ -15,3 +15,7 @@ func _on_credits_button_pressed() -> void:
 
 func _on_start_button_2_pressed() -> void:
 	get_tree().change_scene_to_file("res://levels/main.tscn")
+
+
+func _on_start_button_3_pressed() -> void:
+	get_tree().change_scene_to_file("res://levels/level2.tscn")
