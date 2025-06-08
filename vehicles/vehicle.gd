@@ -13,14 +13,6 @@ var acc_input: float = 0.0
 var previous_velocity := linear_velocity
 var _steer_target := 0.0
 
-signal combo_lost
-var score: int = 0
-var combo: int = 0
-
-func collect_coin():
-	score += 1
-	combo += 1
-
 func _physics_process(delta: float):
 	var fwd_mps := (linear_velocity * transform.basis).x
 
@@ -37,10 +29,6 @@ func _physics_process(delta: float):
 		# Play an impact sound to give audible feedback.
 		$ImpactSound.play()
 		process_mode = Node.PROCESS_MODE_DISABLED
-		# Break combo
-		if combo > 0:
-			emit_signal(&"combo_lost")
-		combo = 0
 
 	steering = move_toward(steering, _steer_target, STEER_SPEED * delta)
 
