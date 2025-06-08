@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyc2u3splrhep"]
+
+[ext_resource type="Texture2D" uid="uid://bqyy8utox7n65" path="res://gui/MainMenu/bg.png" id="1_j61b3"]
+[ext_resource type="Script" uid="uid://bxnipnde4vd07" path="res://gui/Credits/credits.gd" id="1_r2sbb"]
+[ext_resource type="Shader" uid="uid://drod7b0a3ayks" path="res://gui/Credits/darker_blur.gdshader" id="2_r2sbb"]
+[ext_resource type="Texture2D" uid="uid://ban4itupyhv3q" path="res://gui/MainMenu/white.png" id="3_cobx6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r2sbb"]
+shader = ExtResource("2_r2sbb")
+shader_parameter/strength = 8.0
+shader_parameter/mix_percentage = 0.5
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r2sbb")
+
+[node name="bg" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_j61b3")
+
+[node name="Blur" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_r2sbb")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_cobx6")
+
+[node name="CreditsPanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -270.0
+offset_right = 250.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="CreditsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.5
+offset_right = 27.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Credits"
+
+[node name="Credits" type="RichTextLabel" parent="CreditsPanel"]
+custom_minimum_size = Vector2(500, 450)
+layout_mode = 0
+offset_top = 30.0
+offset_right = 500.0
+offset_bottom = 500.0
+bbcode_enabled = true
+text = "[b]Made by necrashter and brotam12[/b]
+
+This game uses the NumDot library, made by Ivorforce and its [url=https://github.com/Ivorforce/NumDot/graphs/contributors]contributors[/url].
+
+Vehicle model by
+model.com
+
+This game uses Godot Engine, available under the following license:
+
+Copyright (c) 2014-present Godot Engine contributors.
+Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the \"Software\"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.[/size]"
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -116.0
+offset_right = 23.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
