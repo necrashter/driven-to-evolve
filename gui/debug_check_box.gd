@@ -8,4 +8,7 @@ func _input(event):
 		button_pressed = not button_pressed
 
 func on_toggled(is_on: bool) -> void:
-	get_tree().paused = is_on
+	if is_on:
+		get_viewport().get_camera_3d().cull_mask |= 2
+	else:
+		get_viewport().get_camera_3d().cull_mask ^= 2

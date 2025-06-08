@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://c17qln03185b3"]
+[gd_scene load_steps=2 format=3 uid="uid://c17qln03185b3"]
+
+[ext_resource type="Script" uid="uid://bdwktt2othse" path="res://vehicles/rays_7.gd" id="1_eg0re"]
 
 [node name="RayCasts" type="Node3D"]
+script = ExtResource("1_eg0re")
 
 [node name="1" type="RayCast3D" parent="."]
 transform = Transform3D(2.64253e-07, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, -2.64253e-07, -1.29718e-14, 0, 0, 0)
