@@ -10,6 +10,7 @@ var best_matrix: NDArray
 var best_bias: NDArray
 var last_matrix: NDArray
 var last_bias: NDArray
+var last_top_history
 
 func _ready():
 	green_debug_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED

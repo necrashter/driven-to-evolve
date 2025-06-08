@@ -37,20 +37,20 @@ func _ready():
 		left_panel.add_objectives(objectives)
 	$Monologue.prepare([
 		{
-			"text": "[center][b]Revere Inputs[/b][/center]\n" +
+			"text": "[center][b]Reverse Inputs[/b][/center]\n" +
 			"Now, you are on the driver's seat! Use arrow keys to drive the car. As you drive the car, " +
 			"your AI model is inverted to compute the inputs that would make it give the same control output as you.",
 		},
 		{
-			"text": "[center][b]Revere Inputs[/b][/center]\n" +
+			"text": "[center][b]Reverse Inputs[/b][/center]\n" +
 			"Although each network varies, you should generally observe that turning right activates the sensors on the left (since the car would need to turn right if there's an obstacle on the left), and vice-versa.",
 		},
 		{
-			"text": "[center][b]Revere Inputs[/b][/center]\n" +
+			"text": "[center][b]Reverse Inputs[/b][/center]\n" +
 			"Another common pattern is the activation of the sensors on the front while driving in reverse. This allows the car to slow down if there's an obstacle up ahead.",
 		},
 		{
-			"text": "[center][b]Revere Inputs[/b][/center]\n" +
+			"text": "[center][b]Reverse Inputs[/b][/center]\n" +
 			"Play around with reverse inputs, then press OK to continue.",
 		},
 		{
@@ -111,8 +111,6 @@ func _physics_process(delta: float) -> void:
 				best_car = car
 				best_car_i = i
 	if best_car:
-		if left_panel:
-			left_panel.update_stats(best_car.distance, best_car.duration)
 		if visualizer and visualizer.visible:
 			visualizer.matrix = matrix.get(best_car_i, null, null)
 			visualizer.bias = bias.get(best_car_i, 0, null)

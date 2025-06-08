@@ -2,7 +2,7 @@ extends Panel
 
 var table_rows: Array = []
 var top_history: Array = []
-var current_distance: float = 0.0
+var current_distance: float = 0.0 
 var current_speed: float = 0.0
 
 func update_stats(distance: float, duration: float):

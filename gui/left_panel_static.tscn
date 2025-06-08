@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://djl8im4by5xfy"]
+
+[ext_resource type="Theme" uid="uid://durh0keniwv21" path="res://gui/theme.tres" id="1_atlco"]
+[ext_resource type="Script" uid="uid://dqvq65o0jx055" path="res://gui/left_panel_static.gd" id="2_atlco"]
+
+[node name="LeftPanel" type="Panel"]
+custom_minimum_size = Vector2(272, 0)
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+theme = ExtResource("1_atlco")
+script = ExtResource("2_atlco")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="HFlowContainer" parent="ScrollContainer/CenterContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Padding" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+
+[node name="Header2" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+text = "Previous Runs"
+horizontal_alignment = 1
+
+[node name="TableHeader" type="HBoxContainer" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Table Header"
+
+[node name="Label" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer/TableHeader"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+text = "#"
+horizontal_alignment = 3
+
+[node name="Label4" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer/TableHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Distance"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="ScrollContainer/CenterContainer/VBoxContainer/TableHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Speed"
+horizontal_alignment = 2

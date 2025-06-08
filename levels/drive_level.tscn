@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bos5w3mtdlx3e"]
+[gd_scene load_steps=9 format=3 uid="uid://bos5w3mtdlx3e"]
 
 [ext_resource type="Environment" uid="uid://bklfqfi8vxoon" path="res://levels/environment.tres" id="1_2aqmi"]
 [ext_resource type="Script" uid="uid://xdlsvh0qmnqc" path="res://levels/drive_level.gd" id="1_6w0gw"]
 [ext_resource type="PackedScene" uid="uid://by3vo67aumu0w" path="res://vehicles/sports_car_manual.tscn" id="3_rwa1m"]
 [ext_resource type="PackedScene" uid="uid://bep7obj2mm720" path="res://vehicles/rays7_rev.tscn" id="4_83u3i"]
+[ext_resource type="PackedScene" uid="uid://djl8im4by5xfy" path="res://gui/left_panel_static.tscn" id="5_s2gku"]
 [ext_resource type="PackedScene" uid="uid://bamu3gqsjmyv" path="res://gui/right_panel_drive.tscn" id="6_vjt65"]
 [ext_resource type="PackedScene" uid="uid://2vo344rbyl4g" path="res://gui/visualizer.tscn" id="7_bs7gy"]
 [ext_resource type="PackedScene" uid="uid://b85k7o14f20hk" path="res://gui/monologue.tscn" id="7_vjt65"]
@@ -42,6 +43,9 @@ current = true
 [node name="PlayerCar" parent="." instance=ExtResource("3_rwa1m")]
 
 [node name="RevRayCasts" parent="." instance=ExtResource("4_83u3i")]
+
+[node name="LeftPanel" parent="." instance=ExtResource("5_s2gku")]
+offset_right = 272.0
 
 [node name="RightPanel" parent="." instance=ExtResource("6_vjt65")]
 offset_left = -272.0
