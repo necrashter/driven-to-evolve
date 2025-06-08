@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://idj24u1thr7x"]
+[gd_scene load_steps=7 format=3 uid="uid://b86mw2ebfwwur"]
 
 [ext_resource type="Theme" uid="uid://clkqhgl0uj24l" path="res://road/theme.tres" id="1_tvkxu"]
 [ext_resource type="Script" uid="uid://dn328g1oget3b" path="res://gui/text_anim.gd" id="2_wyjwy"]
+[ext_resource type="AudioStream" uid="uid://c6d8g5vaujk8x" path="res://gui/objective_complete.wav" id="3_wyjwy"]
 
 [sub_resource type="Animation" id="Animation_fprhy"]
 length = 0.001
@@ -162,5 +163,8 @@ horizontal_alignment = 1
 libraries = {
 &"": SubResource("AnimationLibrary_pkdjc")
 }
+
+[node name="ObjectiveComplete" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_wyjwy")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
