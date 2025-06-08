@@ -1,4 +1,4 @@
-class_name Player
+class_name Vehicle
 extends VehicleBody3D
 
 const STEER_SPEED = 1.5
@@ -14,8 +14,6 @@ var previous_velocity := linear_velocity
 var _steer_target := 0.0
 
 func _physics_process(delta: float):
-	var fwd_mps := (linear_velocity * transform.basis).x
-
 	engine_force = acc_input * engine_force_value
 	_steer_target = steer_input * STEER_LIMIT
 	
@@ -54,6 +52,13 @@ func get_ray_inputs():
 
 func get_input_length() -> int:
 	return $RayCasts.get_child_count()
+
+func get_output_length() -> int:
+	return 2
+
+func set_inputs(inputs: NDArray) -> void:
+	acc_input = inputs.get_float(0)
+	steer_input = inputs.get_float(1)
 
 func on_fell_down():
 	process_mode = Node.PROCESS_MODE_DISABLED

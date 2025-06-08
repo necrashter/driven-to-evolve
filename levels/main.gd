@@ -7,7 +7,7 @@ signal new_generation(generation: int)
 signal population_update(population: int, target: int)
 
 var generation: int = 0
-var init_std: float = 0.1
+@export var init_std: float = 0.1
 var mutation_std: float = 0.02
 var topk = 0.25
 var duration: float = 0.0
@@ -21,8 +21,9 @@ var distance_offset: float = -10.0
 @onready var objectives = get_node_or_null("Objectives")
 
 var cars: Array = []
-var pop_target: int = 1
+@export var pop_target: int = 5
 var input_length: int = 0
+var output_length: int = 0
 var matrix: NDArray
 var bias: NDArray
 
@@ -30,9 +31,10 @@ func _ready():
 	for i in range(pop_target):
 		add_car()
 	input_length = cars[0].get_input_length()
+	output_length = cars[0].get_output_length()
 	var rng = nd.default_rng()
-	matrix = nd.multiply(rng.randn([len(cars), input_length, 2]), init_std)
-	bias = nd.multiply(rng.randn([len(cars), 1, 2]), init_std)
+	matrix = nd.multiply(rng.randn([len(cars), input_length, output_length]), init_std)
+	bias = nd.multiply(rng.randn([len(cars), 1, output_length]), init_std)
 	reset()
 	if right_panel:
 		new_generation.connect(right_panel.on_new_generation)
@@ -79,9 +81,7 @@ func _physics_process(delta: float) -> void:
 	var output = nd.add(nd.matmul(input_matrix, matrix), bias)
 	
 	for i in len(cars):
-		var car = cars[i]
-		car.acc_input = output.get_float(i, 0, 0)
-		car.steer_input = output.get_float(i, 0, 1)
+		cars[i].set_inputs(output.get(i, 0, null))
 	
 	for car in cars:
 		process_car(car)

@@ -8,10 +8,28 @@ func _ready() -> void:
 	$Monologue.prepare([
 		{
 			"text": "[center][b]Welcome![/b][/center]\n" +
-			"This game simulates evolutoin.",
+			"In this game, you will manage an evolutionary process to train a single-layer neural network (i.e., no hidden layers) to drive a car.",
 		},
 		{
-			"text": "Complete your first objective to continue.",
+			"text": "In this level, car accelerates automatically, but steering is controlled by the neural network.\n\nPress SPACE to unpause the game and see what happens.",
+		},
+		{
+			"text": "Since the network is not trained yet, the car doesn't turn.\n\nYou need to harness the power of evolution to overcome this obstacle.",
+		},
+		{
+			"text": "[center][b]Control the Evolution[/b][/center]\n" +
+			"On the right panel, you can control the evolution. Hover your mouse to read the description for each setting. You need to spend the in-game currency to unlock some settings.",
+		},
+		{
+			"text": "[center][b]Failure is Progress[/b][/center]\n" +
+			"Each time you restart, you will make money, even if you didn't achieve your goal. In evolution, each failure gets you closer to your goal.",
+		},
+		{
+			"text": "[center][b]Evolution 101[/b][/center]\n" +
+			"Evolution works by exploring the possibilities and keeping the traits that work. Current top-k setting ensures that only the top 25% cars propagate. However, you need to [b]increase the mutation chance and population[/b].",
+		},
+		{
+			"text": "Complete your first objective to continue.\n\nYour objectives are listed on the left panel.",
 		},
 		{
 			"objective": objectives.get_child(0),

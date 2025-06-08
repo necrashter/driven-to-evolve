@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://8hp4ivij7r3q"]
+[gd_scene load_steps=11 format=3 uid="uid://8hp4ivij7r3q"]
 
 [ext_resource type="PackedScene" uid="uid://b6mppdtwfmrgd" path="res://levels/main.tscn" id="1_khcq3"]
 [ext_resource type="PackedScene" uid="uid://dk06xcftuc7go" path="res://road/procedural_road.tscn" id="2_jehdt"]
 [ext_resource type="Script" uid="uid://0i2khgo2q4o7" path="res://levels/tutorial.gd" id="2_ok11k"]
+[ext_resource type="PackedScene" uid="uid://douf85v47nmd2" path="res://vehicles/sports_car_7rays_dironly.tscn" id="3_gdrka"]
 [ext_resource type="Material" uid="uid://c3afoiqhaw5uw" path="res://road/lane.material" id="4_0fvvq"]
 [ext_resource type="Texture2D" uid="uid://sqf80s3ipxy2" path="res://road/Ground048_1K-JPG_Color.jpg" id="4_rbh7r"]
 [ext_resource type="PackedScene" uid="uid://dmnc8o7p4qybn" path="res://gui/objectives/distance_objective.tscn" id="6_aaho8"]
@@ -21,6 +22,9 @@ uv1_scale = Vector3(100, 100, 100)
 
 [node name="Tutorial" instance=ExtResource("1_khcq3")]
 script = ExtResource("2_ok11k")
+car_scene = ExtResource("3_gdrka")
+init_std = 0.0
+pop_target = 1
 
 [node name="ProceduralRoad" parent="." index="6" instance=ExtResource("2_jehdt")]
 road_width = 15.0
@@ -48,7 +52,7 @@ offset_bottom = 40.0
 
 [node name="ObjectiveLabel" parent="Objectives" index="0" instance=ExtResource("6_aaho8")]
 layout_mode = 2
-target_distance = 20.0
+target_distance = 40.0
 
 [node name="Monologue" parent="." index="9" instance=ExtResource("7_c633x")]
 
