@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwj3kkit24or3"]
 
-[ext_resource type="Material" uid="uid://d33khyiglywww" path="res://road/neon.material" id="1_74tk3"]
+[ext_resource type="Material" uid="uid://d33khyiglywww" path="res://road/bar.material" id="1_74tk3"]
 [ext_resource type="Script" uid="uid://or4vy01wqkaa" path="res://road/road.gd" id="1_l2blf"]
 [ext_resource type="Material" uid="uid://dtc0ujb2qmaf" path="res://road/road.material" id="2_6bp0q"]
 

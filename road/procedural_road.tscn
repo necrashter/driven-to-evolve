@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d2t751qmv78rk" path="res://road/procedural_road.gd" id="1_yt7gp"]
 [ext_resource type="Script" uid="uid://b33cvu61bwbt1" path="res://road/road_path_3d.gd" id="2_1qq4v"]
 [ext_resource type="Script" uid="uid://cri41gevumu88" path="res://road/road_lanes_mesh.gd" id="3_sq1jg"]
-[ext_resource type="Material" uid="uid://d33khyiglywww" path="res://road/neon.material" id="4_kc1tq"]
+[ext_resource type="Material" uid="uid://d33khyiglywww" path="res://road/bar.material" id="4_kc1tq"]
 
 [sub_resource type="Curve3D" id="Curve3D_c7wnc"]
 _data = {

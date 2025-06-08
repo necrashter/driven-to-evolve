@@ -37,3 +37,8 @@ func on_end_generation(generation):
 	for i in range(len(top_history)):
 		var h = top_history[i]
 		table_rows[i].setup(i+1, h['distance'], h['speed'], h['generation'])
+
+func add_objectives(objectives: Control):
+	var container = $ScrollContainer/CenterContainer/VBoxContainer
+	container.add_child(objectives)
+	container.move_child(objectives, 6)

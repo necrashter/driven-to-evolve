@@ -18,6 +18,7 @@ var distance_offset: float = -10.0
 @onready var left_panel = get_node_or_null("LeftPanel")
 @onready var road = get_node_or_null("ProceduralRoad")
 @onready var path3d = get_node_or_null("ProceduralRoad/RoadPath3D")
+@onready var objectives = get_node_or_null("Objectives")
 
 var cars: Array = []
 var pop_target: int = 1
@@ -45,6 +46,9 @@ func _ready():
 	if left_panel:
 		end_generation.connect(left_panel.on_end_generation)
 	Global.objective_complete.connect(on_objective_complete)
+	if objectives:
+		remove_child(objectives)
+		left_panel.add_objectives(objectives)
 
 func on_change_mutation(mutation: float):
 	mutation_std = mutation

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://or4vy01wqkaa" path="res://road/road.gd" id="1_tt3rn"]
 [ext_resource type="Texture2D" uid="uid://1woqnveilmos" path="res://road/roadtex.png" id="2_15g0h"]
-[ext_resource type="Material" uid="uid://d33khyiglywww" path="res://road/neon.material" id="3_qfv12"]
+[ext_resource type="Material" uid="uid://d33khyiglywww" path="res://road/bar.material" id="3_qfv12"]
 [ext_resource type="PackedScene" uid="uid://dm740w1ieanmw" path="res://vehicles/sports_car.tscn" id="5_o24di"]
 [ext_resource type="Theme" uid="uid://clkqhgl0uj24l" path="res://road/theme.tres" id="7_axxc1"]
 [ext_resource type="Script" uid="uid://20mhi1d38dwa" path="res://spedometer.gd" id="8_41jr1"]

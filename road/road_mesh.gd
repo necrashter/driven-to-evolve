@@ -42,7 +42,7 @@ func build():
 			var t = road.curve.sample_baked_with_rotation(current_offset, true, true)
 			verts.append(t * vert)
 			normals.append(t.basis.y)
-			var v = i / len(polygon)
+			var v = i % 2
 			uvs.append(Vector2(current_u, v))
 		current_offset += ProceduralRoad.z_step
 		current_u += u_increment * ProceduralRoad.z_step
@@ -57,7 +57,7 @@ func build():
 			var t = road.curve.sample_baked_with_rotation(current_offset, true, true)
 			verts.append(t * vert)
 			normals.append(t.basis.y)
-			var v = i / len(polygon)
+			var v = i % 2
 			uvs.append(Vector2(current_u, v))
 	
 	# Generate indices

@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce7jar70xfyji"
-path.s3tc="res://.godot/imported/road.jpg-acf1ee5ffa14fa565b3c303d3cd41eaf.s3tc.ctex"
-path.etc2="res://.godot/imported/road.jpg-acf1ee5ffa14fa565b3c303d3cd41eaf.etc2.ctex"
+uid="uid://ds5cc0scm208j"
+path.s3tc="res://.godot/imported/Concrete020_1K-JPG_Color.jpg-e3a9e60ef1e3604af8060e8d56f14f6f.s3tc.ctex"
+path.etc2="res://.godot/imported/Concrete020_1K-JPG_Color.jpg-e3a9e60ef1e3604af8060e8d56f14f6f.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://road/road.jpg"
-dest_files=["res://.godot/imported/road.jpg-acf1ee5ffa14fa565b3c303d3cd41eaf.s3tc.ctex", "res://.godot/imported/road.jpg-acf1ee5ffa14fa565b3c303d3cd41eaf.etc2.ctex"]
+source_file="res://road/Concrete020_1K-JPG_Color.jpg"
+dest_files=["res://.godot/imported/Concrete020_1K-JPG_Color.jpg-e3a9e60ef1e3604af8060e8d56f14f6f.s3tc.ctex", "res://.godot/imported/Concrete020_1K-JPG_Color.jpg-e3a9e60ef1e3604af8060e8d56f14f6f.etc2.ctex"]
 
 [params]
 

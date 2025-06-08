@@ -1,14 +1,14 @@
 [gd_scene load_steps=2 format=3 uid="uid://cph1xydxbbx0p"]
 
-[ext_resource type="Material" uid="uid://d33khyiglywww" path="res://road/neon.material" id="1_o24dm"]
+[ext_resource type="Material" uid="uid://boldax5xabg4v" path="res://road/bar_green.material" id="1_7kkvu"]
 
 [node name="Arch" type="Node3D"]
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
 polygon = PackedVector2Array(7, 4, 0, 6, 7, 5, 10, 0)
-material = ExtResource("1_o24dm")
+material = ExtResource("1_7kkvu")
 
 [node name="CSGPolygon3D2" type="CSGPolygon3D" parent="."]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 polygon = PackedVector2Array(7, 4, 0, 6, 7, 5, 10, 0)
-material = ExtResource("1_o24dm")
+material = ExtResource("1_7kkvu")

@@ -2,7 +2,7 @@
 class_name ProceduralRoad
 extends Node3D
 
-const NEON_MAT := preload("res://road/neon.material")
+const NEON_MAT := preload("res://road/bar.material")
 const ROAD_MAT := preload("res://road/road.material")
 
 @export var road_width: float = 20.0
