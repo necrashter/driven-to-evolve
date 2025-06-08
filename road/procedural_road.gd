@@ -94,14 +94,15 @@ func add_segment(old_len, new_len):
 	add_child(segment)
 
 
-func extend(cut_first=true):
+func extend(cut_first=true) -> float:
 	var start_time = Time.get_ticks_msec()
+	var cut_length: float = 0.0
 	
 	var old_len = path3d.extend_road()
 	add_segment(old_len, path3d.road_len)
 	
 	if cut_first:
-		var cut_length = path3d.cut_first()
+		cut_length = path3d.cut_first()
 		for builder in builders:
 			builder.current_offset -= cut_length
 		segments.pop_front().queue_free()
@@ -109,3 +110,4 @@ func extend(cut_first=true):
 	var end_time = Time.get_ticks_msec()
 	var elapsed_time = end_time - start_time
 	print("Time taken to build: %d milliseconds" % elapsed_time)
+	return cut_length

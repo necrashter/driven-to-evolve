@@ -52,3 +52,6 @@ func get_ray_inputs():
 
 func get_input_length() -> int:
 	return $RayCasts.get_child_count()
+
+func on_fell_down():
+	process_mode = Node.PROCESS_MODE_DISABLED

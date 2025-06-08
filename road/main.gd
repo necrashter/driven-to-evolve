@@ -131,10 +131,9 @@ func process_car(car):
 	if offset - road.segments[0].length > 20.0:
 		road.extend()
 
-	#var closest_point = path3d.curve.get_closest_point(car.position)
-	#if car.position.y - closest_point.y < -20.0:
-		## Car fell, reset
-		#reset_car(car)
+	var closest_point = path3d.curve.get_closest_point(car.position)
+	if car.position.y - closest_point.y < -20.0:
+		car.on_fell_down()
 
 func reset_car(car):
 	car.transform = path3d.curve.sample_baked_with_rotation(10.0, true, true)
