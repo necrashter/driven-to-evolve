@@ -7,6 +7,9 @@ func reset():
 func get_output_length() -> int:
 	return 1
 
+func get_output_names() -> Array:
+	return ["Steering"]
+
 func set_inputs(inputs: NDArray) -> void:
 	steer_input = inputs.get_float(0)
 

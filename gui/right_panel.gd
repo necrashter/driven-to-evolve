@@ -56,8 +56,12 @@ func get_mutation():
 func get_topk():
 	return topk_options[%TopkButton.selected]['topk']
 
+var money_dist_div: float = 100.0
+func on_end_generation(generation):
+	var dist = get_parent().get_best_distance()
+	money += maxi(1, ceili(dist / money_dist_div))
+
 func on_new_generation(generation):
-	money += 1
 	%GenerationLabel.text = "Generation: " + str(generation)
 	
 func on_population_update(population:int, target: int):

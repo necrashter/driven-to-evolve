@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Drive Ad Infinitum"
-config/description="Age of Driving Forever"
+config/name="Driven to Evolve"
+config/description="Driven to Evolve is a simulation-based evolution game where failure fuels your progress. Train a neural network to drive cars using a genetic algorithm, and watch as each generation learns from the last, one crash at a time. Earn money from failures, invest in upgrades, and guide the AI's development as it slowly (and sometimes hilariously) figures out how to drive. With every wipeout, you're one step closer to the perfect racer."
 config/tags=PackedStringArray("3d", "physics", "vehicle")
 run/main_scene="uid://ckvqraq6j1okh"
 config/features=PackedStringArray("4.4")

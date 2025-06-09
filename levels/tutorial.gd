@@ -2,12 +2,12 @@ extends "res://levels/main.gd"
 
 func _enter_tree() -> void:
 	$RightPanel._money = 5
+	$RightPanel.money_dist_div = 50.0
 
 func _ready() -> void:
 	super._ready()
 	road.segments[0].place_block(path3d.curve, road.road_width, 1)
 	road.segments[0].place_arch(path3d.curve, road.road_width, 110.0)
-	print("road ", path3d.road_len)
 	$Monologue.prepare([
 		{
 			"text": "[center][b]Welcome![/b][/center]\n" +

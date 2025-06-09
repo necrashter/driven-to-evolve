@@ -42,6 +42,7 @@ func _ready():
 	bias = nd.multiply(rng.randn([len(cars), 1, output_length]), init_std)
 	reset()
 	if right_panel:
+		end_generation.connect(right_panel.on_end_generation)
 		new_generation.connect(right_panel.on_new_generation)
 		population_update.connect(right_panel.on_population_update)
 		right_panel.on_population_update(len(cars), pop_target)
@@ -130,6 +131,12 @@ func all_crashed():
 		if car.process_mode != PROCESS_MODE_DISABLED:
 			return false
 	return true
+
+func get_best_distance():
+	var distance: float = -INF
+	for car in cars:
+		distance = max(distance, car.distance)
+	return distance
 
 func reset():
 	reset_road()
