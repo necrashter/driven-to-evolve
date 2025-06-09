@@ -69,10 +69,14 @@ func _ready():
 	get_tree().paused = false
 
 func _physics_process(delta: float) -> void:
+	var soft_reset = false
 	if right_panel and right_panel.next_gen_requested:
 		right_panel.next_gen_requested = false
 		next_gen()
 		return
+	elif right_panel and right_panel.soft_reset_requested:
+		right_panel.soft_reset_requested = false
+		soft_reset = true
 	
 	var player_offset = path3d.curve.get_closest_offset(player_car.position)
 	
@@ -93,8 +97,7 @@ func _physics_process(delta: float) -> void:
 	player_offset = path3d.curve.get_closest_offset(player_car.position)
 	
 	for car in cars:
-		var closest_point = path3d.curve.get_closest_point(car.position)
-		if car.position.y - closest_point.y < -20.0:
+		if soft_reset or (car.position.y - path3d.curve.get_closest_point(car.position).y) < -20.0:
 			car.transform = path3d.curve.sample_baked_with_rotation(player_offset, true, true)
 			car.reset()
 	

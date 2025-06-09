@@ -54,8 +54,16 @@ text = "Population: 1"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-tooltip_text = "Create the next generation and restart the simulation."
+tooltip_text = "Restart the simulation."
 text = "Reset (R)"
+
+[node name="NextButton2" type="Button" parent="ScrollContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Reset the AI cars without altering the road."
+text = "Soft Reset (F)"
 
 [node name="HSeparator" type="HSeparator" parent="ScrollContainer/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(240, 0)
@@ -103,3 +111,4 @@ text = "Show Reverse Inputs"
 script = ExtResource("7_davnj")
 
 [connection signal="pressed" from="ScrollContainer/CenterContainer/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/CenterContainer/VBoxContainer/NextButton2" to="." method="_on_next_button_2_pressed"]

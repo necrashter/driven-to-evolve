@@ -22,6 +22,7 @@ func _ready() -> void:
 			"callback": func():
 		Global.last_matrix = matrix
 		Global.last_bias = bias
+		left_panel.on_end_generation(generation)
 		Global.last_top_history = left_panel.top_history
 		get_tree().change_scene_to_file("res://levels/drive_level.tscn")
 		}

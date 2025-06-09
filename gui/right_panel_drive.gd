@@ -9,6 +9,7 @@ var money: int:
 		%MoneyLabel.text = "Money: " + str(money)
 
 var next_gen_requested: bool = false
+var soft_reset_requested: bool = false
 
 func _ready() -> void:
 	pass
@@ -22,6 +23,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed(&"next_gen"):
 		if not %NextButton.disabled:
 			_on_next_button_pressed()
+	if Input.is_action_just_pressed(&"soft_reset"):
+		_on_next_button_2_pressed()
 
 func _on_next_button_pressed() -> void:
 	next_gen_requested = true
@@ -31,3 +34,6 @@ func _on_next_button_pressed() -> void:
 	tween.tween_callback(func():
 		%NextButton.disabled = false
 	)
+
+func _on_next_button_2_pressed() -> void:
+	soft_reset_requested = true
