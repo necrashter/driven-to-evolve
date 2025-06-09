@@ -16,6 +16,7 @@ config/tags=PackedStringArray("3d", "physics", "vehicle")
 run/main_scene="uid://ckvqraq6j1okh"
 config/features=PackedStringArray("4.4")
 config/icon="res://icon.webp"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
@@ -25,6 +26,7 @@ Global="*res://Global.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/borderless=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
