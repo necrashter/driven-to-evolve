@@ -2,10 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b2b3rhd3hx6q3" path="res://gui/MainMenu/MainMenu.gd" id="1_36t4u"]
 
-[sub_resource type="FontVariation" id="FontVariation_hqcvw"]
-variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
-spacing_glyph = -1
-spacing_space = 7
+[sub_resource type="FontVariation" id="FontVariation_3x6ws"]
+variation_embolden = 0.5
 
 [node name="CarSelect" type="Control"]
 layout_mode = 3
@@ -28,16 +26,16 @@ offset_top = 42.93
 offset_right = 157.632
 offset_bottom = 133.93
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0.112748, 0.0972728, 0.0135354, 1)
+theme_override_colors/font_color = Color(0.464521, 0.0415523, 0, 1)
 theme_override_colors/font_shadow_color = Color(1.60982e-05, 0.00239567, 0.0441547, 0.12549)
 theme_override_colors/font_outline_color = Color(0.842205, 0.882203, 0.847018, 1)
 theme_override_constants/shadow_offset_x = 6
 theme_override_constants/shadow_offset_y = 6
-theme_override_constants/outline_size = 32
+theme_override_constants/outline_size = 24
 theme_override_constants/shadow_outline_size = 40
-theme_override_fonts/font = SubResource("FontVariation_hqcvw")
+theme_override_fonts/font = SubResource("FontVariation_3x6ws")
 theme_override_font_sizes/font_size = 64
-text = "Drive Evo"
+text = "Driven to Evolve"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
